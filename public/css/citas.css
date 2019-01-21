@@ -1,0 +1,50 @@
+input[type=radio] {
+    box-sizing: border-box;
+    padding: 0;
+    display: block;
+    margin: auto;
+}
+
+#titulo{
+	margin-top: 20px;
+}
+
+#boton{
+    width: 100%;
+}
+
+.h3, h3 {
+    font-size: 1.75rem;
+    padding-left: inherit;
+}
+
+#cita-add{
+        /* padding-top: 20px; */
+    width: 55%;
+    padding-left: 40px;
+    padding-bottom: 10px;
+    padding-right: 40px;
+    /* border: 1px solid black; */
+    margin-top: 20px;
+    margin-left: 40px;
+    box-shadow: 1px 1px 5px #a8a9ab;
+}    
+
+@media (min-width: 576px).form-inline label {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    margin-bottom: 0;
+    margin-right: 5px;
+}
+
+@media (min-width: 576px)
+.form-inline .form-control {
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
+    margin: 3px;
+}

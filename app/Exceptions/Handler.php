@@ -36,7 +36,6 @@ class Handler extends ExceptionHandler
     {
         parent::report($exception);
     }
-
     /**
      * Render an exception into an HTTP response.
      *
@@ -47,5 +46,39 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         return parent::render($request, $exception);
+    }
+
+    public function handleException ($request, Exception $exception)
+    {
+         if ($exception instanceof ValidationException){
+            return $this->convertValidationExceptionToResponse($exception,$request);
+        }
+
+        if ($exception instanceof ModelNotFoundException){
+            $modelo = class_basename($exception->getModel());
+            return $this->errorResponse("No existe ningun id especificado en el modelo {$modelo}",404);
+        }
+
+        if ($exception instanceof NotFoundHttpException){
+            return $this->errorResponse('No se encontro la url especificada',404);
+        }
+
+         if ($exception instanceof MethodNotAllowedHttpException){
+            return $this->errorResponse('El metodo especificado no es valido',405);
+        }
+
+        if ($exception instanceof HttpException){
+            return $this->errorResponse($exception->getMessage(),$exception->getStatusCode());
+        }
+
+        if ($exception instanceof QueryException){
+            $codigo = $exception->errorInfo[1];
+            
+            if ($codigo == 1451) {
+                return $this->errorResponse('No se puede eliminar de forma permanete debido a que otro recurso tiene un id foraneo relacionado a el.',409);
+            }
+        }
+        
+        return $this->errorResponse('Falla inesperada intente de nuevo',500);
     }
 }

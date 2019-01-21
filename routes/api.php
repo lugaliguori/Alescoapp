@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::resource('doctors','DoctorController');
+Route::resource('surgeries','SurgeryController');
+Route::resource('patients','PatientController');
+Route::resource('citas','CitaController');
+Route::post('/cita','CitaController@citaByDia');
