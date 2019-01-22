@@ -33,7 +33,6 @@ class PatientController extends Controller
 
         $patient = Patient::create($info);
 
-        dd($patient);
 
         return redirect()->route('patients-edit',['id' => $patient->id]);
     }
