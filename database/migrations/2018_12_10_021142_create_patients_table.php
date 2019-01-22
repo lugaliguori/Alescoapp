@@ -19,7 +19,7 @@ class CreatePatientsTable extends Migration
             $table->date('fecha_nac');
             $table->string('sexo');
             $table->string('procedencia');
-            $table->integer('telefono');
+            $table->string('telefono');
             $table->string('motivo');
             $table->string('seguimiento');
             $table->string('diagnostico');
