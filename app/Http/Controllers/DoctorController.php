@@ -38,9 +38,9 @@ class DoctorController extends Controller
 
         $doctor = Doctor::create($info);
 
-        return response()->json($doctor,201);
+        //return response()->json($doctor,201);
 
-        //return redirect()->route('doctors-edit',['id' => $doctor->id]);
+        return redirect()->route('doctors-edit',['id' => $doctor->id]);
     }
 
     public function storeUI(Request $request){
