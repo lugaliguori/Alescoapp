@@ -14,10 +14,10 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 
-<link href="{{ asset('css/nav-style.css') }}" rel="stylesheet">
-<link href="{{ asset('css/patient-style.css') }}" rel="stylesheet">
-<link href="{{ asset('css/citas.css') }}" rel="stylesheet">
-<link href="{{ asset('css/doctors.css') }}" rel="stylesheet">
+<link href="{{ secure_asset('css/nav-style.css') }}" rel="stylesheet">
+<link href="{{ secure_asset('css/patient-style.css') }}" rel="stylesheet">
+<link href="{{ secure_asset('css/citas.css') }}" rel="stylesheet">
+<link href="{{ secure_asset('css/doctors.css') }}" rel="stylesheet">
 <!-- fontawesome-->
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -32,7 +32,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
-<script src="{{ asset('js/nav-js.js') }}"></script>
+<script src="{{ secure_asset('js/nav-js.js') }}"></script>
  
  
  
