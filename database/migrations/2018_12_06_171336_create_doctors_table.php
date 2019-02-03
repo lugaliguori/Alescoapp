@@ -17,7 +17,10 @@ class CreateDoctorsTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->string('especialidad');
-            $table->integer('num_pacientes');
+            $table->string('correo'); 
+            $table->string('password');
+            $table->integer('id_especialidad')->unsigned()->nullable;
+            $table->foreign('id_especialidad')->references('id')->on('especialidades');
             $table->timestamps();
         });
     }

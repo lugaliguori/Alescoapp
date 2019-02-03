@@ -76,9 +76,14 @@ class Handler extends ExceptionHandler
             
             if ($codigo == 1451) {
                 return $this->errorResponse('No se puede eliminar de forma permanete debido a que otro recurso tiene un id foraneo relacionado a el.',409);
+            } else{
+                return $this->errorResponse('There was an error connecting to database',400);
             }
+        }    
+        if ($exception instanceof HttpException){
+            return $this->errorResponse($exception->getMessage(),$exception->getStatusCode());
         }
-        
+
         return $this->errorResponse('Falla inesperada intente de nuevo',500);
     }
 }

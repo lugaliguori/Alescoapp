@@ -10,8 +10,19 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', function () {
+    return View::make('layouts.login');
+})->name('login');
 
-Route::get('/', 'CitaController@index')->name('home');
+Route::get('/checkmail', function () {
+	return View::make('layouts.check');
+});
+
+Route::get('/resetPassword{email}', 'LoginController@makeView')->name('reset');
+
+//Route::get('/', 'CitaController@index')->name('home');
+
+Route::get('/index', 'CitaController@index')->name('index');
 
 Route::get('/citas', 'CitaController@index')->name('citas');
 

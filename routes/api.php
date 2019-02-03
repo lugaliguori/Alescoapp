@@ -18,3 +18,7 @@ Route::resource('surgeries','SurgeryController');
 Route::resource('patients','PatientController');
 Route::resource('citas','CitaController');
 Route::post('/cita','CitaController@citaByDia');
+Route::post('/login','loginController@login');
+Route::post('/checkEmail','loginController@checkEmail');
+Route::post('/resetPassword','loginController@resetPassword');
+Route::get('/logout','loginController@logout');

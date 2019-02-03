@@ -1,42 +1,53 @@
 
+       <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element">
+                            <a data-toggle="dropdown" class="dropdown-toggle">
+                                <span class="block m-t-xs font-bold" style="color: white" >Usuario</span>
+                            </a>
+                    </li>
+                    <li class="active">
+                        <a href="index-2.html"><i class="fa fa-calendar"></i> <span class="nav-label">Citas</span> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li class="active"><a href="index-2.html">Ver citas</a></li>
+                            <li><a href="dashboard_2.html">Programar citas</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="layouts.html"><i class="fa fa-user"></i> <span class="nav-label">Pacientes</span></a>
+                    </li>
+                 
+                    <li class="special_link">
+                        <a href="package.html"><i class="fa fa-user-md"></i> <span class="nav-label">Doctores</span></a>
+                    </li>
+                </ul>
 
- <div class="page-wrapper chiller-theme toggled">
-  <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
-    <i class="fas fa-bars"></i>
-  </a>
-  <nav id="sidebar" class="sidebar-wrapper">
-    <div class="sidebar-content">
-      <div class="sidebar-brand">
-        <a href="/">Alesco Home</a>
-        <div id="close-sidebar">
-          <i class="fas fa-times"></i>
+            </div>
+        </nav>
+        <div id="page-wrapper" class="gray-bg dashbard-1">
+        <div class="row border-bottom">
+        <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+           <!-- <form role="search" class="navbar-form-custom" action="http://webapplayers.com/inspinia_admin-v2.8/search_results.html">
+                <div class="form-group">
+                    <input type="text" placeholder="Busca algo" class="form-control" name="top-search" id="top-search">
+                </div>
+            </form> -->
         </div>
-      </div>
-      <div class="sidebar-menu">
-        <ul>
-          <li class="header-menu">
-            <span>Acciones</span>
-          </li>
-          <li>
-            <a href="/citas">
-              <i class="fas fa-calendar-alt"></i>
-              <span>Citas</span>
-            </a>
-          </li>
-          <li>
-            <a href="/doctores">
-              <i class="fas fa-user-md"></i>
-              <span>Doctores</span>
-            </a>
-          </li>
-          <li>
-            <a href="/pacientes">
-              <i class="fas fa-address-card"></i>
-              <span>Pacientes</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-      <!-- sidebar-menu  -->
-  </nav>
+            <ul class="nav navbar-top-links navbar-right">
+                <li style="padding: 20px">
+                    <span class="m-r-sm text-muted welcome-message">Bienvenido al modulo de citas</span>
+                </li>
+                <li>
+                    <a href="{{url('/api/logout')}}">
+                        <i class="fa fa-sign-out"></i> Cerrar Sesion
+                    </a>
+                </li>
+            </ul>
+
+        </nav>
+        </div>
 

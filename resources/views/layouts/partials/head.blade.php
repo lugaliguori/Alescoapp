@@ -10,30 +10,66 @@
  
 <!-- Bootstrap core CSS -->
  
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
+    <title>INSPINIA | Dashboard</title>
+    <link href="{{ asset('/css/nav-style.css') }}" rel="stylesheet">
 
-<link href="{{ secure_asset('css/nav-style.css') }}" rel="stylesheet">
-<link href="{{ secure_asset('css/patient-style.css') }}" rel="stylesheet">
-<link href="{{ secure_asset('css/citas.css') }}" rel="stylesheet">
-<link href="{{ secure_asset('css/doctors.css') }}" rel="stylesheet">
-<!-- fontawesome-->
+    <link href="{{ asset('/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <!-- Toastr style -->
+    <link href="{{ asset('/css/plugins/toastr/toastr.min.css') }}" rel="stylesheet">
+
+    <!-- Gritter -->
+    <link href="{{ asset('/js/plugins/gritter/jquery.gritter.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('/css/animate.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
 
 <!--js and jquery-->
+    <!-- Mainly scripts -->
+   <script src="{{ asset('/js/jquery-3.1.1.min.js') }}"></script>
+    <script src="{{ asset('/js/popper.min.js') }}"></script>
+    <script src="{{ asset('/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('/js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
+    <script src="{{ asset('/js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Flot -->
+    <script src="{{ asset('/js/plugins/flot/jquery.flot.js') }}"></script>
+    <script src="{{ asset('/js/plugins/flot/jquery.flot.tooltip.min.js') }}"></script>
+    <script src="{{ asset('/js/plugins/flot/jquery.flot.spline.js') }}"></script>
+    <script src="{{ asset('/js/plugins/flot/jquery.flot.resize.js') }}"></script>
+    <script src="{{ asset('js/plugins/flot/jquery.flot.pie.js') }}"></script>
 
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- Peity -->
+    <script src="{{ asset('/js/plugins/peity/jquery.peity.min.js') }}"></script>
+    <script src="{{ asset('/js/demo/peity-demo.js') }}"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <!-- Custom and plugin javascript -->
+    <script src="{{ asset('/js/inspinia.js') }}"></script>
+    <script src="{{ asset('/js/plugins/pace/pace.min.js') }}"></script>
 
-<script src="{{ secure_asset('js/nav-js.js') }}"></script>
- 
+    <!-- jQuery UI -->
+    <script src="{{ asset('/js/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+
+    <!-- GITTER -->
+    <script src="{{ asset('/js/plugins/gritter/jquery.gritter.min.js') }}"></script>
+
+    <!-- Sparkline -->
+    <script src="{{ asset('/js/plugins/sparkline/jquery.sparkline.min.js') }}"></script>
+
+    <!-- Sparkline demo data  -->
+    <script src="{{ asset('/js/demo/sparkline-demo.js') }}"></script>
+
+    <!-- ChartJS-->
+    <script src="{{ asset('/js/plugins/chartJs/Chart.min.js') }}"></script>
+
+    <!-- Toastr -->
+    <script src="{{ asset('/js/plugins/toastr/toastr.min.js') }}"></script>
+
  
  
  

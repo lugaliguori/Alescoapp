@@ -10,7 +10,9 @@ class Doctor extends Model
     protected $fillable = [
     	'nombre',
     	'especialidad',
-    	'num_pacientes',
+    	'correo',
+    	'password',
+    	'id_especialidad'
     ];
 
     public function citas(){
@@ -18,5 +20,8 @@ class Doctor extends Model
     	return $this->hasMany(Cita::class);
     }
 
+    public function especialidad(){
 
+    	return $this->hasMany(Especialidad::class);
+    }
 }

@@ -9,17 +9,16 @@
  </head>
  
  <body>
- 	<div class="row">
-	 	<div id="sidebar" class="col-3">
+ 	
+ 	<div class="wrapper">
 			@section('sidebar')
 	  			@include('layouts.partials.nav')
 	  		@show
-	  	</div>	
-	</div>  
-	   <div id="main" class="col-6">
+	 <div class="row">
 	  		@yield('content')
-	  </div>
-
+	  </div>		
+	</div>
+	</body>
 
  </body>
  

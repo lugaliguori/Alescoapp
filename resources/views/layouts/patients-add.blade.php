@@ -1,64 +1,263 @@
-@extends('layouts.main')
+@extends('layouts.loginmain')
 
 @section('content')
-  <div id="patient-add">
-    <h2>Registrar datos del paciente</h2>
-  	<form method="post" action="/api/patients">
-      <div class="form-group" id="add-patient">
-        <label for="name">Nombre y Apellido</label><span id="requerido">*</span>
-        <input type="text" class="form-control" id="nombre" name ="nombre" placeholder="Inserte nombre y apellido"  required>
-      </div>
-      <div class="form-group">
-        <label for="fecha_nac">Fecha de nacimiento</label><span id="requerido">*</span>
-        <input type="date" class="form-control" id="fecha_nac" name="fecha_nac" oninvalid="this.setCustomValidity('Por favor introduzca fecha de nacimiento')" required>
-      </div>
-      <span>Sexo</span><span id="requerido">*</span>
-      <br>
-      <div class="form-check form-check-inline">
-         <input class="form-check-input" type="radio" name="sexo" id="sexo" value="M" oninvalid="this.setCustomValidity('Escoja una opción')" required>
-         <label class="form-check-label" for="inlineRadio1">M</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="sexo" id="sexo" value="F">
-        <label class="form-check-label" for="inlineRadio2">F</label>
-      </div>
-      <div class="form-group">
-        <label for="procedencia">Estado de procedencia</label><span id="requerido">*</span>
-        <input type="text" class="form-control" id="procedencia" name="procedencia" placeholder="Ej: Miranda" oninvalid="this.setCustomValidity('Por favor inserte el estado')" required>
-      </div>
-      <div class="form-group">
-        <label for="procedencia">Teléfono del paciente</label><span id="requerido">*</span>
-        <input type="number" class="form-control" id="telefono" name="telefono" placeholder="0212 5555555" oninvalid="this.setCustomValidity('Inserte un telefono')" required>
-      </div>
-      <span>Motivo de la cita</span><span id="requerido">*</span>
-      <br>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="motivo" id="motivo" value="Consulta" oninvalid="this.setCustomValidity('Escoja una opción')" required>
-        <label class="form-check-label" for="motivo">Consulta</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="motivo" id="motivo" value="Bajo Sedacion" >
-        <label class="form-check-label" for="motivo">Bajo sedación</label>
-      </div>
-      <div class="form-group">
-        <label for="diagnostico">Diagnóstico</label><span id="requerido">*</span>
-        <textarea type="text" class="form-control" id="diagnostico" name="diagnostico" placeholder="Ojo Derecho:" oninvalid="this.setCustomValidity('Por favor llene este campo')" required></textarea>
-      </div>
-      <span>¿Requiere cirugia?</span><span id="requerido">*</span>
-      <br>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="cirugia" id="cirugia-si" oninvalid="this.setCustomValidity('Por favor llene este campo')" required>
-        <label class="form-check-label" for="cirugia">Si</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="cirugia" id="cirugia-no" required>
-        <label class="form-check-label" for="cirugia">No</label>
-      </div>
-      <div class="form-group">
-        <label for="seguimiento">Seguimiento en</label><span id="requerido">*</span>
-        <input type="text" class="form-control" id="seguimiento" name="seguimiento" placeholder="Ej: 1 semana, 3 meses" required>
-      </div>
-      <button type="submit" class="btn btn-primary">Continuar</button>
-  </form>
-  </div>	
+  <div class="row">
+                <div class="col-lg-8" style="margin: auto">
+                    <div class="ibox ">
+                        <div class="ibox-title">
+                            <h5>Registrar datos de paciente</small></h5>
+  
+                        </div>
+                        <div class="ibox-content">
+                            <form method="post" action="/api/patients">
+                                <div class="form-group  row"><label class="col-sm-2 col-form-label">Normal</label>
+
+                                    <div class="col-sm-10"><input type="text" class="form-control"></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group row"><label class="col-sm-2 col-form-label">Help text</label>
+                                    <div class="col-sm-10"><input type="text" class="form-control"> <span class="form-text m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group row"><label class="col-sm-2 col-form-label">Password</label>
+
+                                    <div class="col-sm-10"><input type="password" class="form-control" name="password"></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group row"><label class="col-sm-2 col-form-label">Placeholder</label>
+
+                                    <div class="col-sm-10"><input type="text" placeholder="placeholder" class="form-control"></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group row"><label class="col-lg-2 col-form-label">Disabled</label>
+
+                                    <div class="col-lg-10"><input type="text" disabled="" placeholder="Disabled input here..." class="form-control"></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group row"><label class="col-lg-2 col-form-label">Static control</label>
+
+                                    <div class="col-lg-10"><p class="form-control-static">email@example.com</p></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group row"><label class="col-sm-2 col-form-label">Checkboxes and radios <br/>
+                                    <small class="text-navy">Normal Bootstrap elements</small></label>
+
+                                    <div class="col-sm-10">
+                                        <div><label> <input type="checkbox" value=""> Option one is this and that&mdash;be sure to include why it's great </label></div>
+                                        <div><label> <input type="radio" checked="" value="option1" id="optionsRadios1" name="optionsRadios"> Option one is this and that&mdash;be sure to
+                                            include why it's great </label></div>
+                                        <div><label> <input type="radio" value="option2" id="optionsRadios2" name="optionsRadios"> Option two can be something else and selecting it will
+                                            deselect option one </label></div>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group row"><label class="col-sm-2 col-form-label">Inline checkboxes</label>
+
+                                    <div class="col-sm-10"><label> <input type="checkbox" value="option1" id="inlineCheckbox1"> a </label> <label class="checkbox-inline">
+                                        <input type="checkbox" value="option2" id="inlineCheckbox2"> b </label> <label>
+                                        <input type="checkbox" value="option3" id="inlineCheckbox3"> c </label></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group row"><label class="col-sm-2 col-form-label">Checkboxes &amp; radios <br/><small class="text-navy">Custom elements</small></label>
+
+                                    <div class="col-sm-10">
+                                        <div class="i-checks"><label> <input type="checkbox" value=""> <i></i> Option one </label></div>
+                                        <div class="i-checks"><label> <input type="checkbox" value="" checked=""> <i></i> Option two checked </label></div>
+                                        <div class="i-checks"><label> <input type="checkbox" value="" disabled="" checked=""> <i></i> Option three checked and disabled </label></div>
+                                        <div class="i-checks"><label> <input type="checkbox" value="" disabled=""> <i></i> Option four disabled </label></div>
+                                        <div class="i-checks"><label> <input type="radio" value="option1" name="a"> <i></i> Option one </label></div>
+                                        <div class="i-checks"><label> <input type="radio" checked="" value="option2" name="a"> <i></i> Option two checked </label></div>
+                                        <div class="i-checks"><label> <input type="radio" disabled="" checked="" value="option2"> <i></i> Option three checked and disabled </label></div>
+                                        <div class="i-checks"><label> <input type="radio" disabled="" name="a"> <i></i> Option four disabled </label></div>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group row"><label class="col-sm-2 col-form-label">Inline checkboxes</label>
+
+                                    <div class="col-sm-10"><label class="checkbox-inline i-checks"> <input type="checkbox" value="option1">a </label>
+                                        <label class="i-checks"> <input type="checkbox" value="option2"> b </label>
+                                        <label class="i-checks"> <input type="checkbox" value="option3"> c </label></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group row"><label class="col-sm-2 col-form-label">Select</label>
+
+                                    <div class="col-sm-10"><select class="form-control m-b" name="account">
+                                        <option>option 1</option>
+                                        <option>option 2</option>
+                                        <option>option 3</option>
+                                        <option>option 4</option>
+                                    </select>
+
+                                        <div class="col-lg-4 m-l-n"><select class="form-control" multiple="">
+                                            <option>option 1</option>
+                                            <option>option 2</option>
+                                            <option>option 3</option>
+                                            <option>option 4</option>
+                                        </select></div>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group row has-success"><label class="col-sm-2 col-form-label">Input with success</label>
+
+                                    <div class="col-sm-10"><input type="text" class="form-control"></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group row has-warning"><label class="col-sm-2 col-form-label">Input with warning</label>
+
+                                    <div class="col-sm-10"><input type="text" class="form-control"></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group  row has-error"><label class="col-sm-2 col-form-label">Input with error</label>
+
+                                    <div class="col-sm-10"><input type="text" class="form-control"></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group row"><label class="col-sm-2 col-form-label">Control sizing</label>
+
+                                    <div class="col-sm-10"><input type="text" placeholder=".form-control-lg" class="form-control form-control-lg m-b">
+                                        <input type="text" placeholder="Default input" class="form-control m-b"> <input type="text" placeholder=".form-control-sm" class="form-control form-control-sm">
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group row"><label class="col-sm-2 col-form-label">Column sizing</label>
+
+                                    <div class="col-sm-10">
+                                        <div class="row">
+                                            <div class="col-md-2"><input type="text" placeholder=".col-md-2" class="form-control"></div>
+                                            <div class="col-md-3"><input type="text" placeholder=".col-md-3" class="form-control"></div>
+                                            <div class="col-md-4"><input type="text" placeholder=".col-md-4" class="form-control"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group row"><label class="col-sm-2 col-form-label">Input groups</label>
+
+                                    <div class="col-sm-10">
+                                        <div class="input-group m-b">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-addon">@</span>
+                                            </div>
+                                            <input type="text" placeholder="Username" class="form-control">
+                                        </div>
+                                        <div class="input-group m-b">
+                                            <input type="text" class="form-control">
+                                            <div class="input-group-append">
+                                                <span class="input-group-addon">.00</span>
+                                                </div>
+                                            </div>
+                                        <div class="input-group m-b">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-addon">$</span>
+                                            </div>
+                                            <input type="text" class="form-control">
+                                            <div class="input-group-append">
+                                                <span class="input-group-addon">.00</span>
+                                            </div>
+                                        </div>
+                                        <div class="input-group m-b">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-addon">
+                                                <input type="checkbox">
+                                                    </span>
+                                            </div>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                        <div class="input-group m-b">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-addon">
+                                                <input type="radio">
+                                                    </span>
+                                            </div>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group row"><label class="col-sm-2 col-form-label">Button addons</label>
+
+                                    <div class="col-sm-10">
+
+                                        <div class="input-group m-b"><span class="input-group-prepend">
+                                            <button type="button" class="btn btn-primary">Go!</button> </span> <input type="text" class="form-control">
+                                        </div>
+                                        <div class="input-group"><input type="text" class="form-control"> <span class="input-group-append"> <button type="button" class="btn btn-primary">Go!
+                                        </button> </span></div>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group row"><label class="col-sm-2 col-form-label">With dropdowns</label>
+
+                                    <div class="col-sm-10">
+                                        <div class="input-group m-b">
+                                            <div class="input-group-prepend">
+                                                <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button">Action </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="#">Action</a></li>
+                                                    <li><a href="#">Another action</a></li>
+                                                    <li><a href="#">Something else here</a></li>
+                                                    <li class="dropdown-divider"></li>
+                                                    <li><a href="#">Separated link</a></li>
+                                                </ul>
+                                            </div>
+                                             <input type="text" class="form-control"></div>
+                                        <div class="input-group"><input type="text" class="form-control">
+
+                                            <div class="input-group-append">
+                                                <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button">Action </button>
+                                                <ul class="dropdown-menu float-right">
+                                                    <li><a href="#">Action</a></li>
+                                                    <li><a href="#">Another action</a></li>
+                                                    <li><a href="#">Something else here</a></li>
+                                                    <li class="dropdown-divider"></li>
+                                                    <li><a href="#">Separated link</a></li>
+                                                </ul>
+                                            </div>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group row"><label class="col-sm-2 col-form-label">Segmented</label>
+
+                                    <div class="col-sm-10">
+                                        <div class="input-group m-b">
+                                            <div class="input-group-prepend">
+                                                <button tabindex="-1" class="btn btn-white" type="button">Action</button>
+                                                <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button"></button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="#">Action</a></li>
+                                                    <li><a href="#">Another action</a></li>
+                                                    <li><a href="#">Something else here</a></li>
+                                                    <li class="dropdown-divider"></li>
+                                                    <li><a href="#">Separated link</a></li>
+                                                </ul>
+                                            </div>
+                                            <input type="text" class="form-control"></div>
+                                        <div class="input-group"><input type="text" class="form-control">
+
+                                            <div class="input-group-append">
+                                                <button tabindex="-1" class="btn btn-white" type="button">Action</button>
+                                                <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button"></button>
+                                                <ul class="dropdown-menu float-right">
+                                                    <li><a href="#">Action</a></li>
+                                                    <li><a href="#">Another action</a></li>
+                                                    <li><a href="#">Something else here</a></li>
+                                                    <li class="dropdown-divider"></li>
+                                                    <li><a href="#">Separated link</a></li>
+                                                </ul>
+                                            </div>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-sm-offset-2">
+                                        <button class="btn btn-white btn-sm" type="submit">Cancel</button>
+                                        <button class="btn btn-primary btn-sm" type="submit">Save changes</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
 @stop
