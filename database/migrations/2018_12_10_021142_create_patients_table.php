@@ -21,10 +21,7 @@ class CreatePatientsTable extends Migration
             $table->string('correo');
             $table->string('procedencia');
             $table->string('telefono');
-            $table->string('motivo');
-            $table->string('seguimiento');
             $table->string('password');
-            $table->string('diagnostico');
             $table->integer('faltas')->default(0);
             $table->timestamps();
 

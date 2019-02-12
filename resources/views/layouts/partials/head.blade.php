@@ -31,11 +31,14 @@
 
 <!--js and jquery-->
     <!-- Mainly scripts -->
+
    <script src="{{ asset('/js/jquery-3.1.1.min.js') }}"></script>
     <script src="{{ asset('/js/popper.min.js') }}"></script>
     <script src="{{ asset('/js/bootstrap.js') }}"></script>
     <script src="{{ asset('/js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
     <script src="{{ asset('/js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <!-- Flot -->
     <script src="{{ asset('/js/plugins/flot/jquery.flot.js') }}"></script>
@@ -52,24 +55,6 @@
     <script src="{{ asset('/js/inspinia.js') }}"></script>
     <script src="{{ asset('/js/plugins/pace/pace.min.js') }}"></script>
 
-    <!-- jQuery UI -->
-    <script src="{{ asset('/js/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
-
-    <!-- GITTER -->
-    <script src="{{ asset('/js/plugins/gritter/jquery.gritter.min.js') }}"></script>
-
-    <!-- Sparkline -->
-    <script src="{{ asset('/js/plugins/sparkline/jquery.sparkline.min.js') }}"></script>
-
-    <!-- Sparkline demo data  -->
-    <script src="{{ asset('/js/demo/sparkline-demo.js') }}"></script>
-
-    <!-- ChartJS-->
-    <script src="{{ asset('/js/plugins/chartJs/Chart.min.js') }}"></script>
-
     <!-- Toastr -->
     <script src="{{ asset('/js/plugins/toastr/toastr.min.js') }}"></script>
 
- 
- 
- 

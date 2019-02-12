@@ -11,12 +11,15 @@
                     <li class="active">
                         <a href="index-2.html"><i class="fa fa-calendar"></i> <span class="nav-label">Citas</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li class="active"><a href="/index/{{$id}}">Ver citas</a></li>
-                            <li><a href="/citas_add/{{$id}}">Programar citas</a></li>
+                            <li class="active"><a href="/admin/{{$id}}">Ver citas</a></li>
+                            <li><a href="/admin/citas_add/{{$id}}">Programar citas</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="/pacientes_edit/{{$id}}"><i class="fa fa-user"></i> <span class="nav-label">Ver Perfil</span></a>
+                        <a href="/pacientes/{{$id}}"><i class="fa fa-user"></i> <span class="nav-label">Pacientes</span></a>
+                    </li>
+                    <li>
+                        <a href="/doctores/{{$id}}"><i class="fa fa-user-md"></i> <span class="nav-label">Doctores</span></a>
                     </li>
                 </ul>
 

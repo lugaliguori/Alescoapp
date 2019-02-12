@@ -18,11 +18,12 @@ class DoctorController extends Controller
         return Doctor::all();;
     }
 
-    public function indexUI(){
+    public function indexUI($id_doc){
 
-        $doctors = DB::table('doctors')->select('id','nombre','especialidad')->get();
+        $doctors = DB::select('SELECT d.id as id, d.nombre as nombre, d.correo as correo, e.nombre as especialidad 
+                            FROM doctors d, especialidades e WHERE d.id_especialidad = e.id');     
 
-        return view('layouts.doctors',['doctors' => $doctors]);
+        return view('layouts.admin.doctors',['doctors' => $doctors,'id' => $id_doc]);
     }
 
 

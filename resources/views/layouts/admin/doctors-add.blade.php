@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.admin-main')
 
 @section('content')
   <div id="doctor-add">

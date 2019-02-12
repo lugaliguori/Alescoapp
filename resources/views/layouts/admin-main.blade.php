@@ -12,7 +12,7 @@
  	
 
 			@section('sidebar')
-	  			@include('layouts.partials.nav')
+	  			@include('layouts.partials.nav-admin')
 	  		@show
 
 		  	@yield('content')

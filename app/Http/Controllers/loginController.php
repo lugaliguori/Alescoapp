@@ -16,25 +16,33 @@ class loginController extends Controller
     	$check = DB::table('patients')->where('correo',$request->email)->get();
     	if (count($check) != 0){
     		if (Hash::check($request->password,$check[0]->password)){
-    			return redirect()->route('index');
+    			return redirect()->route('admin',['id' => $check[0]->id]);
     		}else {
     			$message = ['message' => 'The password is incorrect'];
     			return view('layouts.login',['message' => $message]);
     		}
     	} else {
-    		$check = DB::table('doctors')->where('correo',$request->email)->get();
-    		if (count($check) != 0){
-    			if (Hash::check($request->password,$check[0]->password)){
-    				return redirect()->route('index');
+    			$message = ['message' => 'The email is incorrect'];
+    			return view('layouts.login',['message' => $message]);
+    		}
+   		 
+	}
+
+	public function loginAdmin(Request $request){
+
+    	$check = DB::table('doctors')->where('correo',$request->email)->get();
+    	if (count($check) != 0){
+    		if (Hash::check($request->password,$check[0]->password)){
+    			return redirect()->route('admin',['id' => $check[0]->id]);
     		}else {
-    				$message = ['message' => 'The password is incorrect'];
-    				return view('layouts.login',['message' => $message]);
+    			$message = ['message' => 'The password is incorrect'];
+    			return view('layouts.login',['message' => $message]);
     		}
     	} else {
     			$message = ['message' => 'The email is incorrect'];
-    			return view::make('layouts.login',['message' => $message]);
+    			return view('layouts.login',['message' => $message]);
     		}
-   		 }
+   		 
 	}
 
 	public function checkEmail(Request $request){

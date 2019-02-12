@@ -21,7 +21,7 @@
                 <div class="form-group">
                     <input type="password"  class="form-control" placeholder="confirma Contraseña" required="">
                 </div>
-                <button type="submit" class="btn btn-primary block full-width m-b">Inicio de Sesion</button>
+                <button type="submit" class="btn btn-primary block full-width m-b">Restablecer Contraseña</button>
             </form>
         </div>
     </div>

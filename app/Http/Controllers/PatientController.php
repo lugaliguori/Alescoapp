@@ -13,11 +13,11 @@ class PatientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        $patients = DB::table('patients')->select('id','nombre')->get();
+        $patients = DB::table('patients')->get();
 
-        return view('layouts.patients',['patients' => $patients]);
+        return view('layouts.admin.patients',['patients' => $patients,'id' => $id]);
     }
 
 
@@ -31,9 +31,13 @@ class PatientController extends Controller
     {
         $info = $request->all();
 
+        $date = $info['fecha_nac'];
+
+        $info['fecha_nac'] = date("Y-m-d", strtotime($date));
+
         $patient = Patient::create($info);
 
-        return redirect()->route('patients-edit',['id' => $patient->id]);
+        return redirect()->route('login');
     }
 
     /**
@@ -46,7 +50,14 @@ class PatientController extends Controller
     {
         $info = DB::table('patients')->where('id',$id)->get();
 
-        return View('layouts.patients-edit',['info'=> $info]);
+        return View('layouts.patients-edit',['info'=> $info,'id' => $id]);
+    }
+
+        public function showAdmin($id,$id_doc)
+    {
+        $info = DB::table('patients')->where('id',$id)->get();
+
+        return View('layouts.admin.patients-edit',['info'=> $info,'id' => $id_doc]);
     }
 
     public function getInfo($id)
@@ -65,6 +76,10 @@ class PatientController extends Controller
      */
     public function update(Request $request, Patient $patient)
     {
+
+
+        $opcion =1;
+
         if ($request->has('nombre')){
             $patient->nombre=$request->nombre;
         } 
@@ -77,18 +92,6 @@ class PatientController extends Controller
             $patient->sexo=$request->sexo;
         } 
 
-        if ($request->has('diagnostico')){
-            $patient->diagnostico=$request->diagnostico;
-        }         
-
-        if ($request->has('diagnostico')){
-            $patient->diagnostico=$request->diagnostico;
-        }
-
-        if ($request->has('diagnostico')){
-            $patient->diagnostico=$request->diagnostico;
-        }
-
         if ($request->has('procedencia')){
             $patient->procedencia=$request->procedencia;
         }
@@ -97,27 +100,23 @@ class PatientController extends Controller
             $patient->telefono=$request->telefono;
         }
 
-        if ($request->has('seguimiento')){
-            $patient->seguimiento=$request->seguimiento;
-        }
-
-        if ($request->has('motivo')){
-            $patient->motivo=$request->motivo;
-        }
-
-        if ($request->has('id_cirujia')){
-            $patient->id_cirujia=$request->id_cirujia;
+        if ($request->has('correo')){
+            $patient->correo=$request->correo;
         }
 
         if (!$patient->isDirty()){
-            return response()->json(['Se debe especificar al menos un valor distinto'],422);
-        }
+            $info = self::getInfo($patient->id);
+            $message = "Debes hacer al menos un cambio en los datos";
+            return View('layouts.patients-edit',['info'=> $info,'id'=> $patient->id,'message' => $message]);
 
+        }
         $patient->save();
 
         $info = self::getInfo($patient->id);
 
-         return View('layouts.patients-edit',['info'=> $info]);
+        $message = "Datos actualizados";
+
+         return View('layouts.patients-edit',['info'=> $info,'id'=> $patient->id,'message' => $message]);
 
 
     }
@@ -128,12 +127,12 @@ class PatientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id,$id_doc)
     {
         DB::table('patients')->where('id',$id)->delete();
 
         //return response()->json(['mesage' => 'se ha borrado al paciente', 'data' => $patient], 200);
 
-        return redirect()->action('PatientController@index');
+        return redirect()->action('PatientController@index',['id' => $id_doc]);
     }
 }

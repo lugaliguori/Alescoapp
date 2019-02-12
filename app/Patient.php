@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Surgery;
 use App\Cita;
+use App\Observation;
+
 
 
 class Patient extends Model
@@ -13,12 +15,10 @@ class Patient extends Model
     	'nombre',
     	'fecha_nac',
     	'sexo',
-    	'diagnostico',
     	'procedencia',
     	'telefono',
-    	'seguimiento',
-    	'motivo',
-    	'id_cirugia',
+        'correo',
+        'password',
         'faltas'
     ];
 
@@ -30,6 +30,11 @@ class Patient extends Model
     public function surgeries(){
 
     	return $this->hasMany(Surgery::class);
+    }
+
+    public function observations(){
+
+        return $this->hasMany(Observation::class);
     }
 
 }

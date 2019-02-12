@@ -13,20 +13,17 @@ class Cita extends Model
     	'fecha',
     	'id_paciente',
     	'id_doctor',
+        'motivo',
     ];
 
-    public function fechas(){
-
-    	return $this->belongsToMany(Day::class);
-    }
 
     public function patients(){
 
-    	return $this->belongsToMany(Patient::class);
+    	return $this->belongsToOne(Patient::class);
     }
 
     public function doctors(){
 
-    	return $this->belongsToMany(Doctor::class);
+    	return $this->belongsToOne(Doctor::class);
     }
 }
