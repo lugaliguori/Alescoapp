@@ -16,7 +16,7 @@ class loginController extends Controller
     	$check = DB::table('patients')->where('correo',$request->email)->get();
     	if (count($check) != 0){
     		if (Hash::check($request->password,$check[0]->password)){
-    			return redirect()->route('admin',['id' => $check[0]->id]);
+    			return redirect()->route('index',['id' => $check[0]->id]);
     		}else {
     			$message = ['message' => 'The password is incorrect'];
     			return view('layouts.login',['message' => $message]);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Observation;
+use DB;
 
 class ObservationController extends Controller
 {
@@ -14,9 +15,12 @@ class ObservationController extends Controller
      */
     public function index($id,$id_doc)
     {
-        $info = DB::table('observations')->where('id_paciente',$id)->get();
+        $id = (int)$id;
+        $id_doc = (int)$id_doc;
 
-        return view('layouts.admin.observacion',['$info' => $info,'$id' => $id]);
+        $infos = DB::table('observations')->where('id_paciente',$id)->get();
+        $patient= DB::table('patients')->select('id','nombre')->where('id',$id)->get();
+        return view('layouts.admin.observations',['infos' => $infos,'id' => $id_doc,'patient' => $patient]);
     }
 
     /**
@@ -24,23 +28,17 @@ class ObservationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function store(Request $request)
     {
-        $info = $request->all();
+        $date = $request->fecha;
+        $info['fecha'] = date("Y-m-d", strtotime($date));
+        $info['observaciones'] = $request->observaciones;
+        $info['seguimiento'] = $request->seguimiento;
+        $info['id_paciente'] = $request->id_paciente;
 
         $observation = Observation::create($info);
-    }
 
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Observation $observation)
-    {
-        return $observation;
+        return redirect()->action('ObservationController@index',[$request->id_paciente,$request->id_doc]);
     }
 
 
@@ -53,20 +51,24 @@ class ObservationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+        $observacion = new Observation;
+        if ($request->has('fecha')){
+            $observacion->fecha=$request->fecha;
+        }
+        if ($request->has('observaciones')){
+            $observacion->observaciones =$request->observaciones;
+        }
+        if ($request->has('seguimiento')){
+            $observacion->seguimiento=$request->seguimiento;
+        }
+        if ($request->has('id_paciente')){
+            $observacion->id_paciente =$request->id_paciente;
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        DB::table('observations')->where('id',$id)->delete();
+        DB::table('observations')
+            ->where('id', $id)
+            ->update(['fecha' => $observacion->fecha,'observaciones' => $observacion->observaciones, 'seguimiento' => $observacion->seguimiento,'id_paciente' => $observacion->id_paciente]);
 
-
-        return "done";
+        return redirect()->route('show-observation',[$request->id_paciente,$request->id_doc]);
     }
 }

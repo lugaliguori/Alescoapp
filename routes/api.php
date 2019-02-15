@@ -18,10 +18,13 @@ Route::resource('surgeries','SurgeryController');
 Route::resource('patients','PatientController');
 Route::resource('citas','CitaController');
 //Route::post('admin-citas','CitaController');
-Route::post('cita_edit','CitaController@update');
 Route::post('/cita','CitaController@citaByDia');
 Route::post('/login','loginController@login');
 Route::post('/loginAdmin','loginController@loginAdmin');
 Route::post('/checkEmail','loginController@checkEmail');
 Route::post('/resetPassword','loginController@resetPassword');
 Route::get('/logout','loginController@logout');
+Route::post('/doctors/{id}','DoctorController@store');
+Route::post('/patients/{id}','PatientController@storeAdmin');
+Route::resource('observations','ObservationController');
+

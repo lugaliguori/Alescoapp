@@ -31,7 +31,7 @@
 
                                 <div class="col-sm-10"><input type="text" name="name" class="form-control" value="{{$doctor[0]->nombre}}" disabled></div>
                                 <div class="col-sm-10"><input type="text" name="id_doctor" class="form-control" value="{{$doctor[0]->id}}" hidden></div>
-                                <div class="col-sm-10"><input type="text" name="admin" class="form-control" value="true" hidden></div>
+                                <div class="col-sm-10"><input type="text" name="admin" class="form-control" value="{{$doctor[0]->admin}}" hidden></div>
 
 
                                 </div> 

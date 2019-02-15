@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Doctor;
+use App\Especialidad;
 use DB;
 
 class DoctorController extends Controller
@@ -13,9 +15,10 @@ class DoctorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function add($id)
     {        
-        return Doctor::all();;
+        $especialidades = DB::select('SELECT * FROM especialidades');
+        return view('layouts.admin.doctors-add',['especialidades' => $especialidades, 'id' => $id]);;
     }
 
     public function indexUI($id_doc){
@@ -33,26 +36,21 @@ class DoctorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         $info = $request->all();
+
+        $password = $info['password'];
+
+        $info['password'] = Hash::make($request->password);
 
         $doctor = Doctor::create($info);
 
         //return response()->json($doctor,201);
 
-        return redirect()->route('doctors-edit',['id' => $doctor->id]);
+        return redirect()->route('doctors',['id' => $id]);
     }
 
-    public function storeUI(Request $request){
-
-        $info = $request->all();
-
-        $doctor = Doctor::create($info);
-
-        return redirect()->route('doctor-edit',['id' => $doctor->id]);
-
-    }
 
     /**
      * Display the specified resource.
@@ -60,16 +58,13 @@ class DoctorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Doctor $doctor)
-    {
-        return $doctor;
-    }
 
-    public function showUI($id){
+    public function showUI($id,$id_doc){
 
         $info = DB::table('doctors')->where('id',$id)->get();
+        $especialidades = DB::select('SELECT * FROM especialidades');
 
-        return View('layouts.doctors-edit',['info'=> $info]);
+        return View('layouts.admin.doctors-edit',['info'=> $info,'id' => $id_doc,'especialidades' => $especialidades]);
 
     }
 
@@ -89,27 +84,35 @@ class DoctorController extends Controller
      */
     public function update(Request $request, Doctor $doctor)
     {
-        if ($request->has('nombre')){
+
+        $especialidades = DB::select('SELECT * FROM especialidades');
+
+        if ($request->filled('nombre')){
             $doctor->nombre=$request->nombre;
         } 
 
-        if ($request->has('especialidad')){
+        if ($request->filled('especialidad')){
             $doctor->especialidad=$request->especialidad;
         }
 
-        if ($request->has('num_pacientes')){
-            $doctor->num_pacientes=$request->num_pacientes;
+        if ($request->filled('correo')){
+            $doctor->correo=$request->correo;
+        }
+        if ($request->filled('password')){
+            $doctor->password=$request->password;
         }
 
         if (!$doctor->isDirty()){
-            return response()->json(['Se debe especificar al menos un valor distinto'],422);
+            $info = self::getInfo($doctor->id);
+            $message = "Debes hacer al menos un cambio en los datos";
+            return view('layouts.admin.doctors-edit',['info'=> $info,'id'=> $request->id,'message' => $message,'especialidades' => $especialidades]);
         }
 
         $doctor->save();
 
         $info = self::getInfo($doctor->id);
 
-        return View('layouts.doctors-edit',['info'=> $info]);
+        return view('layouts.admin.doctors-edit',['info'=> $info,'id'=> $request->id,'especialidades' =>$especialidades]);
     }
 
     /**
@@ -118,11 +121,11 @@ class DoctorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id,$id_doc)
     {
+        DB::table('citas')->where('id_doctor',$id)->delete();
         DB::table('doctors')->where('id',$id)->delete();
 
-
-        return redirect()->action('DoctorController@indexUI');
+        return redirect()->action('DoctorController@indexUI',['id' => $id_doc]);
     }
 }

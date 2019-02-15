@@ -41,7 +41,7 @@ class CitaController extends Controller
                             WHERE ((d.id = ?) AND (p.id = c.id_paciente ) AND (c.fecha >= ?))
                             ORDER BY c.fecha ASC ',[$id,$date]);
         if (empty($infos)){
-          return view('layouts.admin.nocita',['date'=>$date,'id' => $id,'opcion' => $opcion]);
+          return view('layouts.admin.nocita',['date'=>$date,'id' => $id]);
         } else {
             return view('layouts.admin.citas',['infos' => $infos, 'id' => $id, 'date' => $date]);
         } 
@@ -57,7 +57,7 @@ class CitaController extends Controller
     public function store(Request $request)
     {
 
-        if ($request['admin'] !=  true){
+        if ($request['admin'] !=  1){
 
             $data['id_paciente'] = $request['id_paciente'];
             $data['id_doctor'] = $request['id_doctor'];
@@ -69,7 +69,7 @@ class CitaController extends Controller
 
             $data['fecha'] = date("Y-m-d", strtotime($date));
 
-            $cita = Cita::create($info);
+            $cita = Cita::create($data);
 
             return redirect()->action('CitaController@index',['id' => $request->id_paciente]);
 
@@ -126,7 +126,7 @@ class CitaController extends Controller
         public function adatoCita($id){
 
         $patients = DB::table('patients')->select('id','nombre')->get();
-        $doctor = DB::table('doctors')->select('id','nombre')->where('id',$id)->get();
+        $doctor = DB::table('doctors')->select('id','nombre','admin')->where('id',$id)->get();
 
         return view('layouts.admin.citas-add', ['patients' => $patients, 'doctor' => $doctor, 'id' => $id]);
     }

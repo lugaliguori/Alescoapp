@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Patient;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class PatientController extends Controller
 {
@@ -20,6 +21,12 @@ class PatientController extends Controller
         return view('layouts.admin.patients',['patients' => $patients,'id' => $id]);
     }
 
+    public function add($id)
+    {
+
+        return view('layouts.admin.patients-add',['id' => $id]);
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -33,11 +40,32 @@ class PatientController extends Controller
 
         $date = $info['fecha_nac'];
 
+        $password = $info['password'];
+
+        $info['password'] = Hash::make($request->password);
+
         $info['fecha_nac'] = date("Y-m-d", strtotime($date));
 
         $patient = Patient::create($info);
 
         return redirect()->route('login');
+    }
+
+    public function storeAdmin(Request $request, $id)
+    {
+        $info = $request->all();
+
+        $date = $info['fecha_nac'];
+
+        $password = $info['password'];
+
+        $info['password'] = Hash::make($request->password);
+
+        $info['fecha_nac'] = date("Y-m-d", strtotime($date));
+
+        $patient = Patient::create($info);
+
+        return redirect()->route('patients',['id'=> $id]);
     }
 
     /**
@@ -56,7 +84,6 @@ class PatientController extends Controller
         public function showAdmin($id,$id_doc)
     {
         $info = DB::table('patients')->where('id',$id)->get();
-
         return View('layouts.admin.patients-edit',['info'=> $info,'id' => $id_doc]);
     }
 
@@ -76,9 +103,6 @@ class PatientController extends Controller
      */
     public function update(Request $request, Patient $patient)
     {
-
-
-        $opcion =1;
 
         if ($request->has('nombre')){
             $patient->nombre=$request->nombre;
@@ -107,16 +131,23 @@ class PatientController extends Controller
         if (!$patient->isDirty()){
             $info = self::getInfo($patient->id);
             $message = "Debes hacer al menos un cambio en los datos";
-            return View('layouts.patients-edit',['info'=> $info,'id'=> $patient->id,'message' => $message]);
 
+            if ($request->has('id_doc')){
+                return View('layouts.admin.patients-edit',['info'=> $info,'id'=> $request->id_doc,'message' => $message]);
+            } else {     
+                return View('layouts.patients-edit',['info'=> $info,'id'=> $patient->id,'message' => $message]);
+            }
         }
         $patient->save();
 
         $info = self::getInfo($patient->id);
 
         $message = "Datos actualizados";
-
-         return View('layouts.patients-edit',['info'=> $info,'id'=> $patient->id,'message' => $message]);
+        if ($request->has('id_doc')){
+         return View('layouts.admin.patients-edit',['info'=> $info,'id'=> $request->id_doc,'message' => $message]);
+        } else {
+            return View('layouts.patients-edit',['info'=> $info,'id'=> $patient->id,'message' => $message]);
+        }
 
 
     }
@@ -129,6 +160,7 @@ class PatientController extends Controller
      */
     public function destroy($id,$id_doc)
     {
+        DB::table('citas')->where('id_paciente',$id)->delete();
         DB::table('patients')->where('id',$id)->delete();
 
         //return response()->json(['mesage' => 'se ha borrado al paciente', 'data' => $patient], 200);

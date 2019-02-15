@@ -57,4 +57,6 @@
 
     <!-- Toastr -->
     <script src="{{ asset('/js/plugins/toastr/toastr.min.js') }}"></script>
+    <script src="{{ asset('/js/patient-add.js') }}"></script>
+    <script src="{{ asset('/js/doctor-add.js') }}"></script>
 

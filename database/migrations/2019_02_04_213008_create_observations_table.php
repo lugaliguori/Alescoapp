@@ -15,7 +15,7 @@ class CreateObservationsTable extends Migration
     {
         Schema::create('observations', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('fecha_observaciones');
+            $table->date('fecha');
             $table->string('observaciones');
             $table->string('seguimiento');
             $table->integer('id_paciente')->unsigned()->nullable;

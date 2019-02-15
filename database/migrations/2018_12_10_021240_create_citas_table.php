@@ -17,7 +17,7 @@ class CreateCitasTable extends Migration
             $table->date('fecha');
             $table->integer('id_paciente')->unsigned();
             $table->integer('id_doctor')->unsigned();
-            $table->string('motivo')->unsigned();
+            $table->string('motivo');
             $table->timestamps();
             $table->primary(['fecha','id_paciente','id_doctor']);
             $table->foreign('id_paciente')->references('id')->on('patients');

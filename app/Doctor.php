@@ -12,7 +12,8 @@ class Doctor extends Model
     	'especialidad',
     	'correo',
     	'password',
-    	'id_especialidad'
+    	'id_especialidad',
+        'admin'
     ];
 
     public function citas(){

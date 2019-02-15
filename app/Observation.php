@@ -8,8 +8,8 @@ class Observation extends Model
 {
     protected $fillable = [
     	'id_paciente',
-    	'fecha_observaciones',
-    	'observacion',
+    	'fecha',
+    	'observaciones',
     	'seguimiento'
 
     ];

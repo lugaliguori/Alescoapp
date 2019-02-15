@@ -16,8 +16,9 @@
   
                         </div>
                         <div class="ibox-content">
-                            <form method="post" name="form-patient" onSubmit="return add_patients()" action="/api/patients/{{$id}}" novalidate>
+                            <form method="post" name="form-patient" onSubmit="return add_patients()" action="/api/patients/{{$info[0]->id}}" novalidate>
                                 @method('PUT')
+                                @csrf
                                 <div class="form-group  row"><label class="col-sm-2 col-form-label">Nombre</label>
 
                                     <div class="col-sm-10"><input type="text" name="nombre" value="{{$info[0]->nombre}}" class="form-control" required></div>
@@ -37,7 +38,7 @@
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group row"><label class="col-sm-2 col-form-label">Password</label>
 
-                                    <div class="col-sm-10"><input type="password" class="form-control" name="password" id="password"required></div>
+                                    <div class="col-sm-10"><input type="password" value="{{$info[0]->password}}" class="form-control" name="password" id="password"required></div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group row"><label class="col-sm-2 col-form-label">Sexo</label>
@@ -60,6 +61,7 @@
                                 <div class="form-group  row"><label class="col-sm-2 col-form-label">Faltas a citas</label>
 
                                     <div class="col-sm-10"><input type="number" name="faltas" value="{{$info[0]->faltas}}" id="faltas" class="form-control"></div>
+                                    <div class="col-sm-10"><input type="number" name="id_doc" value="{{$id}}" id="id_doc" class="form-control" hidden></div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group row">

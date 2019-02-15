@@ -27,8 +27,8 @@
                                         <td>{{$doctor->nombre}}</td>
                                         <td>{{$doctor->correo}}</td>
                                         <td>{{$doctor->especialidad}}</td>
-                                        <td><a href="/"><i class="fa fa-edit"></i></a></td>
-                                        <td><a href="/"><i class="fa fa-trash"></i></a></td>
+                                        <td><a href="/doctores_edit/{{$doctor->id}}/{{$id}}"><i class="fa fa-edit"></i></a></td>
+                                        <td><a href="/doctores_destroy/{{$doctor->id}}/{{$id}}"><i class="fa fa-trash"></i></a></td>
                                     </tr>
                                     @endforeach
                                 </tbody>

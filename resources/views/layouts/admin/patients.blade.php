@@ -32,9 +32,10 @@
                                     </tr>
                                     @endforeach
                                 </tbody>
+                            </table>
                             </div>
-
                         </div>
+                        <a href="/pacientes_add/{{$id}}" class="btn btn-w-m btn-info">Agregar Paciente</a>
                     </div>
                 </div>
 
