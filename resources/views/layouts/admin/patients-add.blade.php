@@ -13,16 +13,13 @@
                                 <div class="form-group  row"><label class="col-sm-2 col-form-label">Nombre</label>
 
                                     <div class="col-sm-10"><input type="text" name="nombre" class="form-control" required></div>
-                                 <div class="invalid-feedback">
-                                  Por favor inserte Nombre
-                                </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group  row"><label class="col-sm-2 col-form-label">Fecha de nacimiento</label>
                                      <div class="col-sm-10"><input type="text" name="fecha_nac" id="fecha_nac"class="form-control" required></div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
-                                <div class="form-group  row"><label placeholder="example@gmail.com" class="col-sm-2 col-form-label">Correo Electronico</label>
+                                <div class="form-group  row"><label placeholder="example@gmail.com" class="col-sm-2 col-form-label">Correo Eléctronico</label>
 
                                     <div class="col-sm-10"><input type="text" name="correo" class="form-control" required></div>
                                 </div>
@@ -44,14 +41,14 @@
                                     <div class="col-sm-10"><input type="text" name="procedencia" id="procedencia" class="form-control"></div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
-                                <div class="form-group  row"><label class="col-sm-2 col-form-label">Telefono</label>
+                                <div class="form-group  row"><label class="col-sm-2 col-form-label">Teléfono</label>
 
                                     <div class="col-sm-10"><input type="text" name="telefono" id="telefono" class="form-control"></div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group row">
                                     <div class="col-sm-4 col-sm-offset-2">
-                                        <a class="btn btn-white btn-sm" href="/">Cancel</a>
+                                        <a class="btn btn-white btn-sm" href="/pacientes/{{$id}}">Cancelar</a>
                                         <button class="btn btn-primary btn-sm" type="submit">Registrar</button>
                                     </div>
                                 </div>

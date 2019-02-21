@@ -12,16 +12,16 @@ class EspecialidadSeeder extends Seeder
     public function run()
     {
         DB::table('especialidades')->insert([
-        	['id' => 1, 'nombre' => 'Oncologo'],
-        	['id' => 2, 'nombre' => 'Cardiolgo'],
-        	['id' => 3,'nombre' => 'Gastroenterologo'],
-        	['id'=> 4, 'nombre' => 'Endocrinologo'],
+        	['id' => 1, 'nombre' => 'Oncólogo'],
+        	['id' => 2, 'nombre' => 'Cardiólgo'],
+        	['id' => 3,'nombre' => 'Gastroenterólogo'],
+        	['id'=> 4, 'nombre' => 'Endocrinólogo'],
         	['id' => 5, 'nombre' => 'Geriatra'],
-        	['id' => 6, 'nombre' => 'Hematologo'],
-        	['id' => 7, 'nombre' => 'Neurologo'],
-        	['id' => 8, 'nombre' => 'Oftalmologo'],
+        	['id' => 6, 'nombre' => 'Hematólogo'],
+        	['id' => 7, 'nombre' => 'Neurólogo'],
+        	['id' => 8, 'nombre' => 'Oftalmólogo'],
         	['id' => 9, 'nombre' => 'Pediatra'],
-        	['id' => 10, 'nombre' => 'Urologo']
+        	['id' => 10, 'nombre' => 'Urólogo']
         ]);
     }
 }

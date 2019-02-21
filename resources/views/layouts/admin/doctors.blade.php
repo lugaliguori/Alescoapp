@@ -14,6 +14,7 @@
                                     <tr>
                                     	<th>#</th>
                                     	<th>Nombre del doctor</th>
+                                        <th>Apellido del doctor</th>
                                     	<th>Correo</th>
                                     	<th>Especialidad</th>
                                     	<th>Ver datos</th>
@@ -25,6 +26,7 @@
                                     <tr>
                                         <td>{{$doctor->id}}</td>
                                         <td>{{$doctor->nombre}}</td>
+                                        <td>{{$doctor->apellido}}</td>
                                         <td>{{$doctor->correo}}</td>
                                         <td>{{$doctor->especialidad}}</td>
                                         <td><a href="/doctores_edit/{{$doctor->id}}/{{$id}}"><i class="fa fa-edit"></i></a></td>

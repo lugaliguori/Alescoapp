@@ -60,4 +60,8 @@ Route::get('/doctores_destroy/{id}/{id_doc}', 'DoctorController@destroy')->name(
 
 Route::get('/doctores_add/{id}', 'DoctorController@add')->name('doctor-add');
 Route::get('/pacientes_add/{id}', 'PatientController@add')->name('patient-add');
+Route::get('/especialidades/{id}', 'EspecialidadController@index')->name('especialidades');
 
+Route::get('/especialidad_add/{id}', 'EspecialidadController@loadView')->name('especialidad-add');
+Route::get('/especialidades_edit/{id_especialidad}/{id_doc}', 'EspecialidadController@show')->name('especialidad-edit');
+Route::get('/especialidades_destroy/{id_especialidad}/{id_doc}', 'EspecialidadController@destroy')->name('especialidad-destroy');

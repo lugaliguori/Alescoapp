@@ -20,5 +20,11 @@
 
 
  </body>
+ <footer>
+ 	@section('footer')
+ 		@include('layouts.partials.footer')
+ 	@show
+ </footer>	
+
  
 </html>

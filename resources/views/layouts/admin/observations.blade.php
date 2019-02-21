@@ -17,7 +17,7 @@
                                      <div class="col-sm-10"><input type="text" value="{{$info->fecha}}" name="fecha" id="fecha" class="form-control" required></div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
-                                <div class="form-group row"><label class="col-sm-2 col-form-label">Observacion</label>
+                                <div class="form-group row"><label class="col-sm-2 col-form-label">Observación</label>
 
                                 <div class="col-sm-10"><textarea value="{{$info->observaciones}}" name="observaciones" class="form-control" >{{$info->observaciones}}</textarea></div>
                                 </div> 
@@ -38,7 +38,7 @@
                                 <input name="id_paciente" value="{{$info->id_paciente}}" hidden>
                                 <div class="form-group row" >
                                     <div class="col-sm-4 col-sm-offset-2" style="display: contents">
-                                        <button class="btn btn-primary btn-sm" type="submit">Actualizar Observacion</button>
+                                        <button class="btn btn-primary btn-sm" type="submit">Actualizar Observación</button>
                                     </div>
                                 </div>
                             </form>
@@ -47,7 +47,7 @@
                         @endif
                          <div class="ibox-content">
                             <form method="post" name="form-patient" action="/api/observations" novalidate>
-                                <div class="form-group  row"><label class="col-sm-2 col-form-label">Fecha de la Observacion</label>
+                                <div class="form-group  row"><label class="col-sm-2 col-form-label">Fecha de la Observación</label>
                                      <div class="col-sm-10"><input type="text" name="fecha" id="fecha" class="form-control" required></div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
@@ -75,7 +75,7 @@
                                 <div class="form-group row" >
                                     <div class="col-sm-4 col-sm-offset-2" style="display: contents">
                                         <a class="btn btn-white btn-sm" href="/patients/{{$id}}">Cancelar</a>
-                                        <button class="btn btn-primary btn-sm" type="submit">Agregar Observacion</button>
+                                        <button class="btn btn-primary btn-sm" type="submit">Agregar Observación</button>
                                     </div>
                                 </div>
                             </form>

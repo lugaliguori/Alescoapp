@@ -20,7 +20,7 @@
 
                                 </div>
                             </div>
-                            <div class="table-responsive">
+                            <div class="table-responsive" style="margin-top: 5px">
                                 <table class="table table-striped">
                                     <thead>
                                     <tr>

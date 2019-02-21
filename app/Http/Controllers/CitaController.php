@@ -6,6 +6,8 @@ use App\Http\Controllers\DoctorController;
 use App\Cita;
 use DB;
 use Illuminate\Http\Request;
+use App\Mail\citasEmail;
+use Illuminate\Support\Facades\Mail;
 
 class CitaController extends Controller
 {
@@ -57,8 +59,7 @@ class CitaController extends Controller
     public function store(Request $request)
     {
 
-        if ($request['admin'] !=  1){
-
+        if ($request->has('admin')){
             $data['id_paciente'] = $request['id_paciente'];
             $data['id_doctor'] = $request['id_doctor'];
             $data['motivo'] = $request['motivo'];
@@ -70,6 +71,11 @@ class CitaController extends Controller
             $data['fecha'] = date("Y-m-d", strtotime($date));
 
             $cita = Cita::create($data);
+
+            $correo_paciente = DB::table('patients')->select('correo')->where('id',$data['id_paciente'])->get();
+            $doctor = DB::table('doctors')->select('nombre')->where('id',$data['id_paciente'])->get();
+
+           Mail::to($paciente[0]->correo)->send(new citasEmail($data['fecha'],$doctor[0]->nombre,$paciente[0]->nombre));
 
             return redirect()->action('CitaController@index',['id' => $request->id_paciente]);
 
@@ -86,6 +92,12 @@ class CitaController extends Controller
             $data['fecha'] = date("Y-m-d", strtotime($date));
 
             $cita = Cita::create($data);
+
+            $paciente = DB::table('patients')->select('correo','nombre')->where('id',$data['id_paciente'])->get();
+
+            $doctor = DB::table('doctors')->select('nombre')->where('id',$data['id_paciente'])->get();
+
+            Mail::to($paciente[0]->correo)->send(new citasEmail($data['fecha'],$doctor[0]->nombre,$paciente[0]->nombre));
 
             return redirect()->action('CitaController@indexAdmin',['id' => $request->id_doctor]);
         }

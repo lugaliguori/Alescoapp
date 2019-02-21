@@ -27,4 +27,6 @@ Route::get('/logout','loginController@logout');
 Route::post('/doctors/{id}','DoctorController@store');
 Route::post('/patients/{id}','PatientController@storeAdmin');
 Route::resource('observations','ObservationController');
+Route::post('/especialidades/{id}','EspecialidadController@create');
+Route::post('/especialidades/{id}/{id_especialidad}','EspecialidadController@update');
 

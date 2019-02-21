@@ -21,6 +21,9 @@
                     <li>
                         <a href="/doctores/{{$id}}"><i class="fa fa-user-md"></i> <span class="nav-label">Doctores</span></a>
                     </li>
+                    <li>
+                        <a href="/especialidades/{{$id}}"><i class="fa fa-user-md"></i> <span class="nav-label">Especialidades</span></a>
+                    </li>
                 </ul>
 
             </div>

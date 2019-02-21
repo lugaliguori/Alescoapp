@@ -15,4 +15,6 @@ class Especialidad extends Model
 
     	return $this->hasOne(Doctor::class);
     }
+
+    protected $table = 'especialidades';
 }

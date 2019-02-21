@@ -16,6 +16,12 @@
 
                                 </div>
                                 <div class="hr-line-dashed"></div>
+                                <div class="form-group  row"><label class="col-sm-2 col-form-label">Apellido</label>
+
+                                    <div class="col-sm-10"><input class="form-control" name="apellido" id="apellido" required></div>
+
+                                </div>
+                                <div class="hr-line-dashed"></div>
                                 <div class="form-group  row"><label class="col-sm-2 col-form-label">Correo</label>
                                      <div class="col-sm-10"><input type="email" name="correo" id="correo" class="form-control" required></div>
                                 </div>
