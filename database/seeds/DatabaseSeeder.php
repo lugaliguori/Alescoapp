@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
     {
     	$this->call(EspecialidadSeeder::class);
         $this->call(AdminSeeder::class);
+        $this->call(PatientSeeder::class);
 
     }
 }

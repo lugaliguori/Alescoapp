@@ -31,7 +31,7 @@
                                     <tbody>
                                     @foreach ($infos as $info)	
                                     <tr>
-                                        <td>{{$info->nombre_paciente}}</td>
+                                        <td><a href="/pacientes_edit/{{$info->id}}/{{$id}}">{{$info->nombre_paciente}}</a></td>
                                         <td>{{$info->fecha}}</td>
                                         <td>{{$info->nombre}}</td>
                                         <td>{{$info->motivo}}</td>

@@ -63,7 +63,7 @@
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group row">
                                     <div class="col-sm-4 col-sm-offset-2">
-                                        <a class="btn btn-white btn-sm" href="/admin">Cancel</a>
+                                        <a class="btn btn-white btn-sm" href="/admin/{{$id}}">Cancel</a>
                                         <button class="btn btn-primary btn-sm" type="submit">Actualizar Datos</button>
                                     </div>
                                     <div class="col-sm-4 col-sm-offset-2">

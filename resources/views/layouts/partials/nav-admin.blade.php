@@ -15,15 +15,20 @@
                             <li><a href="/admin/citas_add/{{$id}}">Programar citas</a></li>
                         </ul>
                     </li>
+                    @if ($administrador == 1)
                     <li>
                         <a href="/pacientes/{{$id}}"><i class="fa fa-user"></i> <span class="nav-label">Pacientes</span></a>
                     </li>
-                    @if ($administrador == 1)
+
                     <li>
                         <a href="/doctores/{{$id}}"><i class="fa fa-user-md"></i> <span class="nav-label">Doctores</span></a>
                     </li>
                     <li>
                         <a href="/especialidades/{{$id}}"><i class="fa fa-user-md"></i> <span class="nav-label">Especialidades</span></a>
+                    </li>
+                    @elseif($administrador == 0)
+                        <li>
+                        <a href="/doctores_edit/{{$id}}/{{$id}}"><i class="fa fa-user"></i> <span class="nav-label">Ver Perfil</span></a>
                     </li>
                     @endif
                 </ul>
