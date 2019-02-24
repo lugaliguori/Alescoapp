@@ -15,15 +15,17 @@ class EspecialidadController extends Controller
      */
     public function index($id)
     {
+        $admin = self::checkAdmin($id);
 
         $especialidades = Especialidad::all(); 
 
-        return View('layouts.admin.especialidades',['id' => $id,'especialidades' => $especialidades]);
+        return View('layouts.admin.especialidades',['id' => $id,'especialidades' => $especialidades,'administrador' => $admin]);
     }
 
     public function loadView($id){
 
-        return View('layouts.admin.especialidades-add',['id'=> $id]);
+        $admin = self::checkAdmin($id);
+        return View('layouts.admin.especialidades-add',['id'=> $id,'administrador' => $admin]);
     }
 
     /**
@@ -42,16 +44,20 @@ class EspecialidadController extends Controller
 
     public function show($id_especialidad,$id){
 
+        $admin = self::checkAdmin($id);
+
         $especialidad = DB::table('especialidades')->select('nombre','id')->where('id',$id_especialidad)->get();
 
-        return view('layouts.admin.especialidades-edit',['id' => $id , 'especialidad' => $especialidad]);
+        return view('layouts.admin.especialidades-edit',['id' => $id , 'especialidad' => $especialidad,'administrador' => $admin]);
     }
 
     public function update(Request $request, $id,$id_especialidad){
 
+        $admin = self::checkAdmin($id);
+
         $especialidad = DB::table('especialidades')->where('id',$id_especialidad)->update(['nombre' => $request->nombre]);
 
-        return redirect()->route('especialidad-edit',['id_especialidad' => $id_especialidad, 'id' => $id]);
+        return redirect()->route('especialidad-edit',['id_especialidad' => $id_especialidad, 'id' => $id,'administrador' => $admin]);
     }
 
     /**
@@ -66,4 +72,11 @@ class EspecialidadController extends Controller
 
         return redirect()->route('especialidades',['id' => $id]);
     }
+
+    public function checkAdmin($id){
+
+        $admin = DB::table('doctors')->select('admin')->where('id',$id)->get();
+
+        return $admin[0]->admin;
+    }  
 }

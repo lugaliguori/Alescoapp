@@ -15,12 +15,13 @@ class ObservationController extends Controller
      */
     public function index($id,$id_doc)
     {
+        $admin = self::checkAdmin($id_doc);
         $id = (int)$id;
         $id_doc = (int)$id_doc;
 
         $infos = DB::table('observations')->where('id_paciente',$id)->get();
         $patient= DB::table('patients')->select('id','nombre')->where('id',$id)->get();
-        return view('layouts.admin.observations',['infos' => $infos,'id' => $id_doc,'patient' => $patient]);
+        return view('layouts.admin.observations',['infos' => $infos,'id' => $id_doc,'patient' => $patient, 'administrador' => $admin]);
     }
 
     /**
@@ -71,4 +72,11 @@ class ObservationController extends Controller
 
         return redirect()->route('show-observation',[$request->id_paciente,$request->id_doc]);
     }
+
+     public function checkAdmin($id){
+
+        $admin = DB::table('doctors')->select('admin')->where('id',$id)->get();
+
+        return $admin[0]->admin;
+    }  
 }

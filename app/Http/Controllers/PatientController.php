@@ -16,15 +16,19 @@ class PatientController extends Controller
      */
     public function index($id)
     {
+
+        $admin = self::checkAdmin($id);
+
         $patients = DB::table('patients')->get();
 
-        return view('layouts.admin.patients',['patients' => $patients,'id' => $id]);
+        return view('layouts.admin.patients',['patients' => $patients,'id' => $id,'administrador' => $admin]);
     }
 
     public function add($id)
     {
+        $admin = self::checkAdmin($id);
 
-        return view('layouts.admin.patients-add',['id' => $id]);
+        return view('layouts.admin.patients-add',['id' => $id,'administrador' => $admin]);
     }
 
 
@@ -78,13 +82,14 @@ class PatientController extends Controller
     {
         $info = DB::table('patients')->where('id',$id)->get();
 
-        return View('layouts.patients-edit',['info'=> $info,'id' => $id]);
+        return View('layouts.patients-edit',['info'=> $info,'id' => $id,'administrador' => $admin]);
     }
 
         public function showAdmin($id,$id_doc)
     {
+        $admin = self::checkAdmin($id);
         $info = DB::table('patients')->where('id',$id)->get();
-        return View('layouts.admin.patients-edit',['info'=> $info,'id' => $id_doc]);
+        return View('layouts.admin.patients-edit',['info'=> $info,'id' => $id_doc,'administrador' => $admin]);
     }
 
     public function getInfo($id)
@@ -104,6 +109,7 @@ class PatientController extends Controller
     public function update(Request $request, Patient $patient)
     {
 
+        $admin = self::checkAdmin($id);
         if ($request->has('nombre')){
             $patient->nombre=$request->nombre;
         } 
@@ -133,7 +139,7 @@ class PatientController extends Controller
             $message = "Debes hacer al menos un cambio en los datos";
 
             if ($request->has('id_doc')){
-                return View('layouts.admin.patients-edit',['info'=> $info,'id'=> $request->id_doc,'message' => $message]);
+                return View('layouts.admin.patients-edit',['info'=> $info,'id'=> $request->id_doc,'message' => $message,'administrador' => $admin]);
             } else {     
                 return View('layouts.patients-edit',['info'=> $info,'id'=> $patient->id,'message' => $message]);
             }
@@ -144,7 +150,7 @@ class PatientController extends Controller
 
         $message = "Datos actualizados";
         if ($request->has('id_doc')){
-         return View('layouts.admin.patients-edit',['info'=> $info,'id'=> $request->id_doc,'message' => $message]);
+         return View('layouts.admin.patients-edit',['info'=> $info,'id'=> $request->id_doc,'message' => $message,'administrador' => $admin]);
         } else {
             return View('layouts.patients-edit',['info'=> $info,'id'=> $patient->id,'message' => $message]);
         }
@@ -167,4 +173,11 @@ class PatientController extends Controller
 
         return redirect()->action('PatientController@index',['id' => $id_doc]);
     }
+
+    public function checkAdmin($id){
+
+        $admin = DB::table('doctors')->select('admin')->where('id',$id)->get();
+
+        return $admin[0]->admin;
+    }  
 }

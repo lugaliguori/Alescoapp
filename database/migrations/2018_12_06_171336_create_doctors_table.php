@@ -19,7 +19,7 @@ class CreateDoctorsTable extends Migration
             $table->string('apellido');
             $table->string('correo'); 
             $table->string('password');
-            $table->boolean('admin');
+            $table->boolean('admin')->default(0);
             $table->integer('id_especialidad')->unsigned()->nullable;
             $table->foreign('id_especialidad')->references('id')->on('especialidades');
             $table->timestamps();

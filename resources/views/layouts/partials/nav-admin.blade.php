@@ -18,12 +18,14 @@
                     <li>
                         <a href="/pacientes/{{$id}}"><i class="fa fa-user"></i> <span class="nav-label">Pacientes</span></a>
                     </li>
+                    @if ($administrador == 1)
                     <li>
                         <a href="/doctores/{{$id}}"><i class="fa fa-user-md"></i> <span class="nav-label">Doctores</span></a>
                     </li>
                     <li>
                         <a href="/especialidades/{{$id}}"><i class="fa fa-user-md"></i> <span class="nav-label">Especialidades</span></a>
                     </li>
+                    @endif
                 </ul>
 
             </div>

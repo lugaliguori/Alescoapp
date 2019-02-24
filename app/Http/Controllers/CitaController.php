@@ -38,14 +38,16 @@ class CitaController extends Controller
     {
         $date = date("Y-m-d");   
 
+        $admin = self::checkAdmin($id);
+
         $infos =  DB::select('SELECT d.id as id_doc, c.fecha as fecha, p.nombre as nombre_paciente, p.id as id, d.nombre as nombre,c.motivo as motivo 
                             FROM doctors d, patients p, citas c 
                             WHERE ((d.id = ?) AND (p.id = c.id_paciente ) AND (c.fecha >= ?))
                             ORDER BY c.fecha ASC ',[$id,$date]);
         if (empty($infos)){
-          return view('layouts.admin.nocita',['date'=>$date,'id' => $id]);
+          return view('layouts.admin.nocita',['date'=>$date,'id' => $id,'administrador' => $admin]);
         } else {
-            return view('layouts.admin.citas',['infos' => $infos, 'id' => $id, 'date' => $date]);
+            return view('layouts.admin.citas',['infos' => $infos, 'id' => $id, 'date' => $date,'administrador' => $admin]);
         } 
         
     }
@@ -137,10 +139,12 @@ class CitaController extends Controller
 
         public function adatoCita($id){
 
+        $admin = self::checkAdmin($id);    
+
         $patients = DB::table('patients')->select('id','nombre')->get();
         $doctor = DB::table('doctors')->select('id','nombre','admin')->where('id',$id)->get();
 
-        return view('layouts.admin.citas-add', ['patients' => $patients, 'doctor' => $doctor, 'id' => $id]);
+        return view('layouts.admin.citas-add', ['patients' => $patients, 'doctor' => $doctor, 'id' => $id,'administrador' =>$admin]);
     }
 
 
@@ -149,16 +153,25 @@ class CitaController extends Controller
         $patient = DB::table('patients')->select('id')->where('id',$request->id)->get();
         $date = date("Y-m-d", strtotime($request->fecha));
 
+        $admin = self::checkAdmin($request->id); 
+
         $infos =  DB::select('SELECT c.fecha as fecha, p.nombre as nombre_paciente, p.id as id, d.nombre as nombre,c.motivo as motivo 
                             FROM doctors d, patients p, citas c 
                             WHERE ((p.id = ? ) AND (c.fecha >= ?))',[$request->id,$date]);
         if (empty($infos)){
-          return view('layouts.users.nocita',['date'=>$date,'id' => $request->id]);
+          return view('layouts.users.nocita',['date'=>$date,'id' => $request->id,'administrador' =>$admin]);
         } else {
-            return view('layouts.users.citas',['infos' => $infos, 'id' => $request->id, 'date' => $date]);
+            return view('layouts.users.citas',['infos' => $infos, 'id' => $request->id, 'date' => $date,'administrador' =>$admin]);
         } 
 
 
+    }
+
+    public function checkAdmin($id){
+
+        $admin = DB::table('doctors')->select('admin')->where('id',$id)->get();
+
+        return $admin[0]->admin;
     }        
 
 }

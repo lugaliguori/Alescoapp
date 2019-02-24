@@ -16,17 +16,20 @@ class DoctorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function add($id)
-    {        
+    {   
+        $admin = self::checkAdmin($id);
         $especialidades = DB::select('SELECT * FROM especialidades');
-        return view('layouts.admin.doctors-add',['especialidades' => $especialidades, 'id' => $id]);;
+        return view('layouts.admin.doctors-add',['especialidades' => $especialidades, 'id' => $id,'administrador' => $admin]);;
     }
 
     public function indexUI($id_doc){
 
-        $doctors = DB::select('SELECT d.id as id, d.nombre as nombre, d.correo as correo, e.nombre as especialidad 
+        $admin = self::checkAdmin($id_doc);
+
+        $doctors = DB::select('SELECT d.id as id, d.nombre as nombre, d.apellido as apellido, d.correo as correo, e.nombre as especialidad 
                             FROM doctors d, especialidades e WHERE d.id_especialidad = e.id');     
 
-        return view('layouts.admin.doctors',['doctors' => $doctors,'id' => $id_doc]);
+        return view('layouts.admin.doctors',['doctors' => $doctors,'id' => $id_doc,'administrador' => $admin]);
     }
 
 
@@ -61,10 +64,12 @@ class DoctorController extends Controller
 
     public function showUI($id,$id_doc){
 
+        $admin = self::checkAdmin($id_doc);
+
         $info = DB::table('doctors')->where('id',$id)->get();
         $especialidades = DB::select('SELECT * FROM especialidades');
 
-        return View('layouts.admin.doctors-edit',['info'=> $info,'id' => $id_doc,'especialidades' => $especialidades]);
+        return View('layouts.admin.doctors-edit',['info'=> $info,'id' => $id_doc,'especialidades' => $especialidades,'administrador' => $admin]);
 
     }
 
@@ -84,11 +89,16 @@ class DoctorController extends Controller
      */
     public function update(Request $request, Doctor $doctor)
     {
+        $admin = Self::checkAdmin($request->id);
 
         $especialidades = DB::select('SELECT * FROM especialidades');
 
         if ($request->filled('nombre')){
             $doctor->nombre=$request->nombre;
+        } 
+
+        if ($request->filled('apellido')){
+            $doctor->apellido=$request->apellido;
         } 
 
         if ($request->filled('especialidad')){
@@ -105,14 +115,14 @@ class DoctorController extends Controller
         if (!$doctor->isDirty()){
             $info = self::getInfo($doctor->id);
             $message = "Debes hacer al menos un cambio en los datos";
-            return view('layouts.admin.doctors-edit',['info'=> $info,'id'=> $request->id,'message' => $message,'especialidades' => $especialidades]);
+            return view('layouts.admin.doctors-edit',['info'=> $info,'id'=> $request->id,'message' => $message,'especialidades' => $especialidades,'administrador' => $admin]);
         }
 
         $doctor->save();
 
         $info = self::getInfo($doctor->id);
 
-        return view('layouts.admin.doctors-edit',['info'=> $info,'id'=> $request->id,'especialidades' =>$especialidades]);
+        return view('layouts.admin.doctors-edit',['info'=> $info,'id'=> $request->id,'especialidades' =>$especialidades,'administrador' => $admin]);
     }
 
     /**
@@ -128,4 +138,11 @@ class DoctorController extends Controller
 
         return redirect()->action('DoctorController@indexUI',['id' => $id_doc]);
     }
+
+    public function checkAdmin($id){
+
+        $admin = DB::table('doctors')->select('admin')->where('id',$id)->get();
+
+        return $admin[0]->admin;
+    }        
 }

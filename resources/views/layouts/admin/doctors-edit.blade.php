@@ -26,7 +26,7 @@
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group  row"><label class="col-sm-2 col-form-label">Apellido</label>
 
-                                    <div class="col-sm-10"><input class="form-control" name="apellido" id="apellido" required></div>
+                                    <div class="col-sm-10"><input class="form-control" name="apellido" id="apellido" value="{{$info[0]->apellido}}" required></div>
 
                                 </div>
                                 <div class="hr-line-dashed"></div>
@@ -40,15 +40,19 @@
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group row"><label class="col-sm-2 col-form-label">Especialidad</label>
-                                    <div class="col-sm-10"><select class="form-control" name="id_especialidad" id="id_especialidad" required></div>
+                                    <div class="col-sm-10"><select class="form-control" name="id_especialidad" id="id_especialidad" required>
                                         @foreach ($especialidades as $especialidad)
                                         <linea>
                                           <option value="{{$especialidad->id}}">{{$especialidad->nombre}}</option>
                                         </linea>
                                         @endforeach
                                         </select>  
+                                    </div>    
                                  </div>
-                                 <input type="text" id="admin" name="admin" value="true" hidden>
+                                 <div class="form-group row"><label class="col-sm-2 col-form-label">Administrador</label>
+                                    <div class="col-sm-10"><label>
+                                        <input type="radio" name="admin" id="admin" value="1"> Si </label>
+                                    </div>
                                 </div> 
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group row">

@@ -21,29 +21,22 @@ class loginController extends Controller
     			$message = ['message' => 'The password is incorrect'];
     			return view('layouts.login',['message' => $message]);
     		}
-    	} else {
-    			$message = ['message' => 'The email is incorrect'];
-    			return view('layouts.login',['message' => $message]);
-    		}
-   		 
+    	} else{
+    		$check = DB::table('doctors')->where('correo',$request->email)->get();
+    		if (count($check) != 0){
+	    		if (Hash::check($request->password,$check[0]->password)){
+	    			$admin =  $check[0]->admin;
+	    			return redirect()->route('admin',['id' => $check[0]->id,'administrador' => $admin]);
+	    		}else {
+	    			$message = ['message' => 'The password is incorrect'];
+	    			return view('layouts.login',['message' => $message]);
+	   		}
+    	}else{
+    		$message = ['message' => 'The email is incorrect'];
+    		return view('layouts.login',['message' => $message]);
+    	}  		
 	}
-
-	public function loginAdmin(Request $request){
-
-    	$check = DB::table('doctors')->where('correo',$request->email)->get();
-    	if (count($check) != 0){
-    		if (Hash::check($request->password,$check[0]->password)){
-    			return redirect()->route('admin',['id' => $check[0]->id]);
-    		}else {
-    			$message = ['message' => 'The password is incorrect'];
-    			return view('layouts.login',['message' => $message]);
-    		}
-    	} else {
-    			$message = ['message' => 'The email is incorrect'];
-    			return view('layouts.login',['message' => $message]);
-    		}
-   		 
-	}
+}
 
 	public function checkEmail(Request $request){
 		$email = $request->email;
@@ -77,7 +70,7 @@ class loginController extends Controller
 				DB::table('doctors')->where('correo',$request->email)->update(['password' => Hash::make($request->newPassword)]);
 			return redirect()->route('login');
 			} else {
-				$message = ['status'=> 500, 'message' => 'The email is incorrect'];
+				$message = ['status'=> 200, 'message' => 'The email is incorrect'];
 				return view('layouts.reset', compact($message));
 			}
 		}
