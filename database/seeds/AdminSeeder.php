@@ -17,6 +17,7 @@ class AdminSeeder extends Seeder
             'correo' => 'admin@gmail.com',
             'password' => Hash::make(12345678),
             'admin' => true,
+            'horario' => '08:30:00',
             'id_especialidad' => 1
         ]);
     }
