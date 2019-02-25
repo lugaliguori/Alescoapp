@@ -42,8 +42,8 @@ class CitaController extends Controller
 
         $infos =  DB::select('SELECT d.id as id_doc, c.fecha as fecha, p.nombre as nombre_paciente, p.id as id, d.nombre as nombre,c.motivo as motivo 
                             FROM doctors d, patients p, citas c 
-                            WHERE ((d.id = ?) AND (p.id = c.id_paciente ) AND (c.fecha >= ?))
-                            ORDER BY c.fecha ASC ',[$id,$date]);
+                            WHERE ((d.id = ?) AND (c.fecha >= ?) AND (c.id_doctor = ?))
+                            ORDER BY c.fecha ASC ',[$id,$date,$id]);
         if (empty($infos)){
           return view('layouts.admin.nocita',['date'=>$date,'id' => $id,'administrador' => $admin]);
         } else {
@@ -60,49 +60,96 @@ class CitaController extends Controller
      */
     public function store(Request $request)
     {
+        if (self::checkExist($request)){
+            if ($request->has('admin')){
+                $data['id_paciente'] = $request['id_paciente'];
+                $data['id_doctor'] = $request['id_doctor'];
+                $data['motivo'] = $request['motivo'];
+
+                $info = $request->all();
+
+                $date = $info['fecha'];
+
+                $data['fecha'] = date("Y-m-d", strtotime($date));
+
+                $cita = Cita::create($data);
+
+                $paciente = DB::table('patients')->select('correo','nombre')->where('id',$data['id_paciente'])->get();
+                $doctor = DB::table('doctors')->select('nombre')->where('id',$data['id_paciente'])->get();
+
+               Mail::to($paciente[0]->correo)->send(new citasEmail($data['fecha'],$doctor[0]->nombre,$paciente[0]->nombre));
+
+                return redirect()->action('CitaController@indexAdmin',['id' => $request->id_doctor]);
+
+            }else {
+
+                $data['id_paciente'] = $request['id_paciente'];
+                $data['id_doctor'] = $request['id_doctor'];
+                $data['motivo'] = $request['motivo'];
+
+                $info = $request->all();
+
+                $date = $info['fecha'];
+
+                $data['fecha'] = date("Y-m-d", strtotime($date));
+
+                $cita = Cita::create($data);
+
+                $paciente = DB::table('patients')->select('correo','nombre')->where('id',$data['id_paciente'])->get();
+
+                $doctor = DB::table('doctors')->select('nombre')->where('id',$data['id_paciente'])->get();
+
+                Mail::to($paciente[0]->correo)->send(new citasEmail($data['fecha'],$doctor[0]->nombre,$paciente[0]->nombre));
+
+                return redirect()->action('CitaController@index',['id' => $request->id_paciente]);
+            }
+        }else{
+
+            $cupos = DB::select('SELECT * from citas WHERE ((fecha = ?) AND (id_doctor = ?))', [$request->fecha,$request->id_doctor]);
+
+            $cupos = count($cupos);
+
+            $disponibles = 10 - $cupos;
+
+            $doctor = DB::table('doctors')->select('nombre','horario')->where('id',$request->id_doctor)->get();
+
+            $paciente = DB::table('patients')->select('nombre')->where('id',$request->id_paciente)->get();
+
+            $mensaje = "No puede crear una cita dos veces en un dia con el mismo doctor";
+
+            if ($request->has('admin')){
+                return redirect()->action('CitaController@confirmCita',[$request,'id' =>$request->id_doctor]);
+            }else{
+                return redirect()->action('CitaController@confirmCita',[$request,'id' =>$request->id_paciente]);
+            }
+        }    
+    }
+
+    public function confirmCita(Request $request, $id)
+    {
+
+        $date = $request->fecha;
+
+        $date = date("Y-m-d", strtotime($date));
+
+        $request->fecha = $date;
+
+        $cupos = DB::select('SELECT * from citas WHERE ((fecha = ?) AND (id_doctor = ?))', [$request->fecha,$request->id_doctor]);
+
+        $cupos = count($cupos);
+
+        $disponibles = 10 - $cupos;
+
+        $doctor = DB::table('doctors')->select('nombre','horario')->where('id',$request->id_doctor)->get();
+
+        $paciente = DB::table('patients')->select('nombre')->where('id',$request->id_paciente)->get();
 
         if ($request->has('admin')){
-            $data['id_paciente'] = $request['id_paciente'];
-            $data['id_doctor'] = $request['id_doctor'];
-            $data['motivo'] = $request['motivo'];
+                return view('layouts.admin.cita-confirm',['cupos' => $disponibles,'info' => $request, 'id' => $request->id_doctor,'administrador' => $request->admin,'doctor' => $doctor[0],'paciente' => $paciente[0]->nombre]);
+            }else{
+                return view('layouts.users.cita-confirm',['cupos' => $disponibles,'info' => $request, 'id' => $request->id_paciente,'doctor' => $doctor[0],'paciente' => $paciente[0]->nombre]);
+            }
 
-            $info = $request->all();
-
-            $date = $info['fecha'];
-
-            $data['fecha'] = date("Y-m-d", strtotime($date));
-
-            $cita = Cita::create($data);
-
-            $correo_paciente = DB::table('patients')->select('correo')->where('id',$data['id_paciente'])->get();
-            $doctor = DB::table('doctors')->select('nombre')->where('id',$data['id_paciente'])->get();
-
-           Mail::to($paciente[0]->correo)->send(new citasEmail($data['fecha'],$doctor[0]->nombre,$paciente[0]->nombre));
-
-            return redirect()->action('CitaController@index',['id' => $request->id_paciente]);
-
-        }else {
-
-            $data['id_paciente'] = $request['id_paciente'];
-            $data['id_doctor'] = $request['id_doctor'];
-            $data['motivo'] = $request['motivo'];
-
-            $info = $request->all();
-
-            $date = $info['fecha'];
-
-            $data['fecha'] = date("Y-m-d", strtotime($date));
-
-            $cita = Cita::create($data);
-
-            $paciente = DB::table('patients')->select('correo','nombre')->where('id',$data['id_paciente'])->get();
-
-            $doctor = DB::table('doctors')->select('nombre')->where('id',$data['id_paciente'])->get();
-
-            Mail::to($paciente[0]->correo)->send(new citasEmail($data['fecha'],$doctor[0]->nombre,$paciente[0]->nombre));
-
-            return redirect()->action('CitaController@indexAdmin',['id' => $request->id_doctor]);
-        }
     }
 
     /**
@@ -172,6 +219,18 @@ class CitaController extends Controller
         $admin = DB::table('doctors')->select('admin')->where('id',$id)->get();
 
         return $admin[0]->admin;
+    }
+
+    public function checkExist(Request $request){
+
+        $cita = DB::select('SELECT * from citas WHERE ((fecha = ?) AND (id_paciente = ?) AND (id_doctor = ?))', [$request->fecha,$request->id_paciente,$request->id_doctor]);
+
+        if (count($cita) == 0){
+            return true;
+        }else{
+            return false;
+        }
+
     }        
 
 }

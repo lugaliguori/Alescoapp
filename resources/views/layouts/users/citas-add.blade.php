@@ -9,7 +9,7 @@
   
                         </div>
                         <div class="ibox-content">
-                            <form method="post" name="form-patient" onSubmit="return add_cita()" action="/api/citas" novalidate>
+                            <form method="post" name="form-patient" onSubmit="return add_cita()" action="/api/cita-confirm/{{$id}}" novalidate>
                                 <div class="form-group  row"><label class="col-sm-3 col-form-label">Nombre</label>
 
                                     <div class="col-sm-9"><input type="text" name="name" class="form-control" value="{{$patient[0]->nombre}}" disabled></div>
@@ -42,7 +42,7 @@
                                 <div class="form-group row">
                                     <div class="col-sm-4 col-sm-offset-2">
                                         <a class="btn btn-white btn-sm" href="/index/{{$id}}">Cancelar</a>
-                                        <button class="btn btn-primary btn-sm" type="submit">Crear cita</button>
+                                        <button class="btn btn-primary btn-sm" type="submit">Siguiente</button>
                                     </div>
                                 </div>
                             </form>

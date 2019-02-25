@@ -29,4 +29,5 @@ Route::post('/patients/{id}','PatientController@storeAdmin');
 Route::resource('observations','ObservationController');
 Route::post('/especialidades/{id}','EspecialidadController@create');
 Route::post('/especialidades/{id}/{id_especialidad}','EspecialidadController@update');
+Route::post('/cita-confirm/{id}','CitaController@confirmCita');
 

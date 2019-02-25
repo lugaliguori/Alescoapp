@@ -8,7 +8,7 @@
                                 <span class="block m-t-xs font-bold" style="color: white" >Oncologico Luis Razetti</span>
                             </a>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="index-2.html"><i class="fa fa-calendar"></i> <span class="nav-label">Citas</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li class="active"><a href="/admin/{{$id}}">Ver citas</a></li>

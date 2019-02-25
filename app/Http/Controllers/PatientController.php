@@ -82,7 +82,7 @@ class PatientController extends Controller
     {
         $info = DB::table('patients')->where('id',$id)->get();
 
-        return View('layouts.patients-edit',['info'=> $info,'id' => $id,'administrador' => $admin]);
+        return View('layouts.patients-edit',['info'=> $info,'id' => $id]);
     }
 
         public function showAdmin($id,$id_doc)
@@ -108,8 +108,7 @@ class PatientController extends Controller
      */
     public function update(Request $request, Patient $patient)
     {
-
-        $admin = self::checkAdmin($id);
+        $id = $patient->id;
         if ($request->has('nombre')){
             $patient->nombre=$request->nombre;
         } 
@@ -150,6 +149,7 @@ class PatientController extends Controller
 
         $message = "Datos actualizados";
         if ($request->has('id_doc')){
+            $admin = self::checkAdmin($id);
          return View('layouts.admin.patients-edit',['info'=> $info,'id'=> $request->id_doc,'message' => $message,'administrador' => $admin]);
         } else {
             return View('layouts.patients-edit',['info'=> $info,'id'=> $patient->id,'message' => $message]);

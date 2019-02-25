@@ -14,7 +14,7 @@
                                     	<th>#</th>
                                     	<th>Nombre del paciente</th>
                                     	<th>Correo</th>
-                                    	<th>Telefono<th>
+                                    	<th>Teléfono<th>
                                     	<th>Ver datos</th>
                                     	<th>Eliminar</th>
                                     </tr>

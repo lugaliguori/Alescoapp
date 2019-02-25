@@ -16,11 +16,12 @@ class citasEmail extends Mailable
      *
      * @return void
      */
-    public function __construct($fecha,$nombre_doctor,$nombre_paciente)
+    public function __construct($fecha,$nombre_doctor,$nombre_paciente,$hora)
     {
         $this->fecha = $fecha;
         $this->nombre_doctor = $nombre_doctor;
         $this->nombre_paciente = $nombre_paciente;
+        $this->hora = $hora;
 
     }
 
@@ -38,6 +39,7 @@ class citasEmail extends Mailable
                         'nombre_paciente' => $this->nombre_paciente,
                         'fecha' => $this->fecha,
                         'nombre_doctor' => $this->nombre_doctor
+                        'hora' => $this->hora;
                     ]);
 
     }
