@@ -6,7 +6,9 @@
         <div>
             <div>
 
-                <h1 class="logo-name" style="text-align: center">Alesco</h1>
+                <div class="row" style="justify-content: center" >
+                     <img src="{{ asset('images/alescologo.jpg') }}" style="margin-bottom: 10px">
+                 </div>
 
             </div>
             <h3>Inserta tu nueva Contraseña</h3>
