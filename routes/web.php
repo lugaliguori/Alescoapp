@@ -18,7 +18,7 @@ Route::get('/checkmail', function () {
 	return View::make('layouts.check');
 });
 
-Route::get('/resetPassword{email}', 'LoginController@makeView')->name('reset');
+Route::get('/resetPassword{email}', 'loginController@makeView')->name('reset');
 
 //Route::get('/', 'CitaController@index')->name('home');
 
