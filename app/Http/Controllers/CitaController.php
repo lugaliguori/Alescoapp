@@ -139,7 +139,7 @@ class CitaController extends Controller
                     return view('layouts.users.citas-add',['cupos' => $disponibles,'info' => $request, 'id' => $request->id_paciente,'doctor' => $doctor[0],'patient' => $paciente,'doctors' => $doctors]);
             }
         }else{
-            $mensaje = 'No puede solicitar citas con un doctor dos veces en un dia';
+            $mensaje = 'No puede solicitar citas con un doctor dos veces en un día';
             if ($request->has('admin')){
 
                     $patients = DB::table('patients')->select('id','nombre')->get();
