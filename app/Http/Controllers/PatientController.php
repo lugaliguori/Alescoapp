@@ -167,6 +167,7 @@ class PatientController extends Controller
     public function destroy($id,$id_doc)
     {
         DB::table('citas')->where('id_paciente',$id)->delete();
+        DB::table('observations')->where('id_paciente',$id)->delete();
         DB::table('patients')->where('id',$id)->delete();
 
         //return response()->json(['mesage' => 'se ha borrado al paciente', 'data' => $patient], 200);

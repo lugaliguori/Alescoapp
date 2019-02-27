@@ -51,7 +51,7 @@
                                  </div>
                                  <div class="hr-line-dashed"></div>
                                 <div class="form-group row"><label class="col-sm-2 col-form-label">Hora citas</label>
-                                        <div class="col-sm-10"><input type="time" class="form-control" name="horario" id="horario" required></div>
+                                        <div class="col-sm-10"><input type="time" class="form-control" value="{{$info[0]->horario}}" name="horario" id="horario" required></div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 @if ($administrador == 1)
@@ -64,7 +64,7 @@
                                 @endif
                                 <div class="form-group row">
                                     <div class="col-sm-4 col-sm-offset-2">
-                                        <a class="btn btn-white btn-sm" href="/admin/index/{{$id}}">Cancelar</a>
+                                        <a class="btn btn-white btn-sm" href="/doctores/{{$id}}">Cancelar</a>
                                         <button class="btn btn-primary btn-sm" type="submit">Actualizar Datos</button>
                                     </div>
                                 </div>

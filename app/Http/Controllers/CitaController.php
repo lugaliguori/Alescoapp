@@ -120,9 +120,9 @@ class CitaController extends Controller
 
         $cupos = count($cupos);
 
-        $doctor = DB::table('doctors')->select('id','nombre','horario','paciente_dia')->where('id',$request->id_doctor)->get();
+        $doctor = DB::table('doctors')->select('id','nombre','horario','pacientes_dia')->where('id',$request->id_doctor)->get();
 
-        $disponibles = $doctor[0]->paciente_dia - $cupos;
+        $disponibles = $doctor[0]->pacientes_dia - $cupos;
 
         $paciente = DB::table('patients')->select('nombre','id')->where('id',$request->id_paciente)->get();
 
@@ -135,7 +135,7 @@ class CitaController extends Controller
 
                     return view('layouts.admin.citas-add',['cupos' => $disponibles,'info' => $request, 'id' => $request->id_doctor,'administrador' => $request->admin,'doctor' => $doctor[0],'paciente' => $paciente[0]->nombre,'patients' => $patients]);
             }else{
-                    $doctors = DB::table('doctors')->select('id','nombre','horario','paciente_dia')->get();
+                    $doctors = DB::table('doctors')->select('id','nombre','horario','pacientes_dia')->get();
                     return view('layouts.users.citas-add',['cupos' => $disponibles,'info' => $request, 'id' => $request->id_paciente,'doctor' => $doctor[0],'patient' => $paciente,'doctors' => $doctors]);
             }
         }else{
@@ -146,7 +146,7 @@ class CitaController extends Controller
 
                     return view('layouts.admin.citas-add',['cupos' => $disponibles,'info' => $request, 'id' => $request->id_doctor,'administrador' => $request->admin,'doctor' => $doctor[0],'paciente' => $paciente[0]->nombre,'patients' => $patients,'mensaje' => $mensaje]);
             }else{
-                    $doctors = DB::table('doctors')->select('id','nombre','horario','paciente_dia')->get();
+                    $doctors = DB::table('doctors')->select('id','nombre','horario','pacientes_dia')->get();
                     return view('layouts.users.citas-add',['cupos' => $disponibles,'info' => $request, 'id' => $request->id_paciente,'doctor' => $doctor[0],'patient' => $paciente,'doctors' => $doctors,'mensaje' => $mensaje]);
             }
         }    

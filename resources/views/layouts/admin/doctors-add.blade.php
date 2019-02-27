@@ -60,7 +60,7 @@
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group row">
                                     <div class="col-sm-4 col-sm-offset-2">
-                                        <a class="btn btn-white btn-sm" href="/admin/index/{{$id}}">Cancelar</a>
+                                        <a class="btn btn-white btn-sm" href="/doctores/{{$id}}">Cancelar</a>
                                         <button class="btn btn-primary btn-sm" type="submit">Agregar Doctor</button>
                                     </div>
                                 </div>

@@ -13,7 +13,7 @@
                                     <tr>
                                     	<th>Nombre especialidad</th>
                                         <th>Editar</th>
-                                        <th>Eliminar</th>
+
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -21,7 +21,6 @@
                                     <tr>
                                         <td>{{$especialidad->nombre}}</td>
                                         <td><a href="/especialidades_edit/{{$especialidad->id}}/{{$id}}"><i class="fa fa-edit"></i></a></td>
-                                        <td><a href="/especialidades_destroy/{{$especialidad->id}}/{{$id}}"><i class="fa fa-trash"></i></a></td>
                                     </tr>
                                     @endforeach
                                 </tbody>

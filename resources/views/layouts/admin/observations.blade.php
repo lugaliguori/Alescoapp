@@ -74,7 +74,7 @@
                                 </div>
                                 <div class="form-group row" >
                                     <div class="col-sm-4 col-sm-offset-2" style="display: contents">
-                                        <a class="btn btn-white btn-sm" href="/patients/{{$id}}">Cancelar</a>
+                                        <a class="btn btn-white btn-sm" href="/pacientes/{{$id}}">Cancelar</a>
                                         <button class="btn btn-primary btn-sm" type="submit">Agregar Observación</button>
                                     </div>
                                 </div>

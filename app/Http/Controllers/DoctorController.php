@@ -111,6 +111,15 @@ class DoctorController extends Controller
         if ($request->filled('password')){
             $doctor->password=$request->password;
         }
+        if ($request->has('pacientes_dia')){
+            $doctor->pacientes_dia=$request->pacientes_dia;
+        }
+        if ($request->has('horario')){
+            $doctor->horario=$request->horario;
+        }
+        if ($request->has('admin')){
+            $doctor->admin=$request->admin;
+        }
 
         if (!$doctor->isDirty()){
             $info = self::getInfo($doctor->id);
