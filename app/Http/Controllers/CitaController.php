@@ -77,7 +77,7 @@ class CitaController extends Controller
                 $paciente = DB::table('patients')->select('correo','nombre')->where('id',$data['id_paciente'])->get();
                 $doctor = DB::table('doctors')->select('nombre')->where('id',$data['id_paciente'])->get();
 
-               Mail::to($paciente[0]->correo)->send(new citasEmail($data['fecha'],$doctor[0]->nombre,$paciente[0]->nombre,$data['hora']));
+               //Mail::to($paciente[0]->correo)->send(new citasEmail($data['fecha'],$doctor[0]->nombre,$paciente[0]->nombre,$data['hora']));
 
                 return redirect()->action('CitaController@indexAdmin',['id' => $request->id_doctor]);
 
@@ -100,7 +100,7 @@ class CitaController extends Controller
 
                 $doctor = DB::table('doctors')->select('nombre','horario')->where('id',$data['id_paciente'])->get();
 
-                Mail::to($paciente[0]->correo)->send(new citasEmail($data['fecha'],$doctor[0]->nombre,$paciente[0]->nombre,$data['hora']));
+//Mail::to($paciente[0]->correo)->send(new citasEmail($data['fecha'],$doctor[0]->nombre,$paciente[0]->nombre,$data['hora']));
 
                 return redirect()->action('CitaController@index',['id' => $request->id_paciente]);
             }
