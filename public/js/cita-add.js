@@ -1,4 +1,4 @@
-function add_doctors()                                    
+function add_cita()                                    
 {                
     var date = document.forms["form-patient"]["fecha"];  
     var id_doctor = document.forms["form-patient"]["id_doctor"]; 
@@ -7,19 +7,19 @@ function add_doctors()
     if (date.value == "")                                  
     { 
         window.alert("Por favor la fecha de la cita"); 
-        name.focus(); 
+        date.focus(); 
         return false; 
     } 
     if (id_doctor.value == "")                                  
     { 
         window.alert("Por favor escoja un doctor"); 
-        email.focus(); 
+        id_doctor.focus(); 
         return false; 
     } 
     if (motivo.value == "")                                  
     { 
         window.alert("Por favor escoja su motivo de cita"); 
-        password.focus(); 
+        motivo.focus(); 
         return false; 
     } 
 

@@ -9,6 +9,11 @@
             </div>
             <h3>Bienvenido al módulo de citas</h3>
             <form class="m-t" role="form" method="POST" action="/api/login">
+                @if (isset($message))
+                    <div class="alert alert-danger" role="alert">
+                      {{$message}}
+                    </div>
+                @endif
                 <div class="form-group">
                     <input type="email" name="email" class="form-control" placeholder="Correo" required="">
                 </div>

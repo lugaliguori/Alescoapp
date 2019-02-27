@@ -38,8 +38,8 @@ class citasEmail extends Mailable
                     ->with([
                         'nombre_paciente' => $this->nombre_paciente,
                         'fecha' => $this->fecha,
-                        'nombre_doctor' => $this->nombre_doctor
-                        'hora' => $this->hora;
+                        'nombre_doctor' => $this->nombre_doctor,
+                        'hora' => $this->hora
                     ]);
 
     }

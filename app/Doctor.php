@@ -14,6 +14,7 @@ class Doctor extends Model
     	'correo',
     	'password',
         'horario',
+        'pacientes_dia',
     	'id_especialidad',
         'admin'
     ];

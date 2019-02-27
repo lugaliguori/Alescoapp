@@ -18,7 +18,7 @@ class loginController extends Controller
     		if (Hash::check($request->password,$check[0]->password)){
     			return redirect()->route('index',['id' => $check[0]->id]);
     		}else {
-    			$message = ['message' => 'The password is incorrect'];
+    			$message = 'La contraseña es incorrecta';
     			return view('layouts.login',['message' => $message]);
     		}
     	} else{
@@ -28,11 +28,11 @@ class loginController extends Controller
 	    			$admin =  $check[0]->admin;
 	    			return redirect()->route('admin',['id' => $check[0]->id,'administrador' => $admin]);
 	    		}else {
-	    			$message = ['message' => 'The password is incorrect'];
+	    			$message ='La contraseña es incorrecta';
 	    			return view('layouts.login',['message' => $message]);
 	   		}
     	}else{
-    		$message = ['message' => 'The email is incorrect'];
+    		$message = 'El correo no es correcto';
     		return view('layouts.login',['message' => $message]);
     	}  		
 	}
