@@ -120,7 +120,7 @@ class CitaController extends Controller
 
         $cupos = count($cupos);
 
-        $doctor = DB::table('doctors')->join('especialidades','doctors.id_especialidad', '=','especialidades.id')->select('doctors.id','doctors.nombre','doctors.horario','doctors.pacientes_dia','especialidades.nombre as especialidad')->where('id',$request->id_doctor)->get();
+        $doctor = DB::table('doctors')->join('especialidades','doctors.id_especialidad', '=','especialidades.id')->select('doctors.id','doctors.nombre','doctors.horario','doctors.pacientes_dia','especialidades.nombre as especialidad')->where('doctors.id',$request->id_doctor)->get();
 
         $disponibles = $doctor[0]->pacientes_dia - $cupos;
 
