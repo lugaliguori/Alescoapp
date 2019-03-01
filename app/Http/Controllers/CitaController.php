@@ -120,7 +120,7 @@ class CitaController extends Controller
 
         $cupos = count($cupos);
 
-        $doctor = DB::table('doctors')->select('id','nombre','horario','pacientes_dia')->where('id',$request->id_doctor)->get();
+        $doctor = DB::table('doctors')->join('especialidades','doctors.id_especialidad', '=','especialidades.id')->select('doctors.id','doctors.nombre','doctors.horario','doctors.pacientes_dia','especialidades.nombre as especialidad')->where('id',$request->id_doctor)->get();
 
         $disponibles = $doctor[0]->pacientes_dia - $cupos;
 
@@ -137,7 +137,8 @@ class CitaController extends Controller
 
                     return view('layouts.admin.citas-add',['cupos' => $disponibles,'info' => $request, 'id' => $request->id_doctor,'administrador' => $request->admin,'doctor' => $doctor[0],'paciente' => $paciente[0]->nombre,'patients' => $patients, 'puesto' => $numero]);
             }else{
-                    $doctors = DB::table('doctors')->select('id','nombre','horario','pacientes_dia')->get();
+                    DB::table('doctors')->join('especialidades','doctors.id_especialidad', '=','especialidades.id')->select('doctors.id','doctors.nombre','doctors.horario','doctors.pacientes_dia','especialidades.nombre as especialidad')->where('id',$request->id_doctor)->get();
+
                     return view('layouts.users.citas-add',['cupos' => $disponibles,'info' => $request, 'id' => $request->id_paciente,'doctor' => $doctor[0],'patient' => $paciente,'doctors' => $doctors,'puesto' => $numero]);
             }
         }else{
@@ -148,7 +149,9 @@ class CitaController extends Controller
 
                     return view('layouts.admin.citas-add',['cupos' => $disponibles,'info' => $request, 'id' => $request->id_doctor,'administrador' => $request->admin,'doctor' => $doctor[0],'paciente' => $paciente[0]->nombre,'patients' => $patients,'mensaje' => $mensaje,'puesto' => $numero]);
             }else{
-                    $doctors = DB::table('doctors')->select('id','nombre','horario','pacientes_dia')->get();
+                    DB::table('doctors')->join('especialidades','doctors.id_especialidad', '=','especialidades.id')->select('doctors.id','doctors.nombre','doctors.horario','doctors.pacientes_dia','especialidades.nombre as especialidad')->where('id',$request->id_doctor)->get();
+
+                    
                     return view('layouts.users.citas-add',['cupos' => $disponibles,'info' => $request, 'id' => $request->id_paciente,'doctor' => $doctor[0],'patient' => $paciente,'doctors' => $doctors,'mensaje' => $mensaje,'puesto' => $numero]);
             }
         }    
