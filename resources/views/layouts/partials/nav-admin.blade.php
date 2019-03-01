@@ -5,7 +5,7 @@
                     <li class="nav-header">
                         <div class="dropdown profile-element">
                             <a data-toggle="dropdown" class="dropdown-toggle">
-                                <span class="block m-t-xs font-bold" style="color: white" >Oncologico Luis Razetti</span>
+                                <span class="block m-t-xs font-bold" style="color: white" >Oncológico Luis Razetti</span>
                             </a>
                     </li>
                     <li>
@@ -48,11 +48,11 @@
             </div>
                 <ul class="nav navbar-top-links navbar-right">
                     <li style="padding: 20px">
-                        <span class="m-r-sm text-muted welcome-message">Bienvenido al modulo de citas</span>
+                        <span class="m-r-sm text-muted welcome-message">Bienvenido al módulo de citas</span>
                     </li>
                     <li>
                         <a href="{{url('/api/logout')}}">
-                            <i class="fa fa-sign-out"></i> Cerrar Sesion
+                            <i class="fa fa-sign-out"></i> Cerrar Sesión
                         </a>
                     </li>
                 </ul>

@@ -50,7 +50,7 @@
                                     </div>    
                                  </div>
                                  <div class="hr-line-dashed"></div>
-                                <div class="form-group row"><label class="col-sm-2 col-form-label">Hora inicio de citas</label>
+                                <div class="form-group row"><label class="col-sm-2 col-form-label">Hora de inicio de citas</label>
                                         <div class="col-sm-10"><input type="text" class="form-control" value="{{$info[0]->horario}}" name="horario" id="horario" required></div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
