@@ -25,7 +25,7 @@
                                     <div class="col-sm-9"><select class="form-control" name="id_doctor" id="id_doctor" required></div>
                                         @foreach ($doctors as $doctor)
                                         <linea>
-                                          <option value="{{$doctor->id}}">{{$doctor->nombre}}</option>
+                                          <option value="{{$doctor->id}}">{{$doctor->nombre}}, {{$doctor->especialidad}}</option>
                                         </linea>
                                         @endforeach
                                         </select>  

@@ -28,7 +28,7 @@
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group row"><label class="col-sm-3 col-form-label">Doctor</label>
 
-                                <div class="col-sm-9"><input type="text" name="name" class="form-control" value="{{$doctor->nombre}}" disabled></div>
+                                <div class="col-sm-9"><input type="text" name="name" class="form-control" value="{{$doctor->nombre}}, {{$doctor->especialidad}}" disabled></div>
                                 <div class="col-sm-9"><input type="text" name="id_doctor" class="form-control" value="{{$doctor->id}}" hidden></div>
                                 <input name="admin" value="{{$administrador}}" hidden>
                                 </div> 
@@ -74,8 +74,8 @@
                                   @endif
                             </div>
                              <form method="post" name="form-patient" id="form" onSubmit="return add_cita()" action="/api/citas" novalidate>
-                                <div class="form-group  row"><label class="col-sm-3 col-form-label">Cupos disponibles</label>
-                                    <div class="col-sm-9"><input type="text" value="{{$cupos}}" class="form-control" disabled></div>
+                                <div class="form-group  row"><label class="col-sm-3 col-form-label">Numero en la lista</label>
+                                    <div class="col-sm-9"><input type="text" value="{{$puesto}}" class="form-control" disabled></div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <input name="id_paciente" value="{{$info->id_paciente}}" hidden>
