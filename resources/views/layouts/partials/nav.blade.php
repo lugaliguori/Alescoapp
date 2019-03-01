@@ -12,13 +12,12 @@
                         <a href="/index/{{$id}}"><i class="fa fa-calendar"></i> <span class="nav-label">Ver citas</span></a>
                     </li>
                     <li>
-                        <a href="/citas_add/{{$id}}"><i class="fa fa-user"></i> <span class="nav-label">Programar citas</span></a>
+                        <a href="/citas_add/{{$id}}"><i class="fa fa-book"></i> <span class="nav-label">Programar citas</span></a>
                     </li>
                     <li>
                         <a href="/pacientes_edit/{{$id}}"><i class="fa fa-user"></i> <span class="nav-label">Ver Perfil</span></a>
                     </li>
                 </ul>
-
             </div>
         </nav>
         <div id="page-wrapper" class="gray-bg dashbard-1">
