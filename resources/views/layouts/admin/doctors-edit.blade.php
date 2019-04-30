@@ -23,15 +23,16 @@
                                     <input class="text" id="id" name="id" value="{{$id}}" hidden>
 
                                 </div>
-                                <div class="form-group  row"><label class="col-sm-2 col-form-label">Cédula</label>
-
-                                    <div class="col-sm-10"><input type="text" name="cedula" id="cedula" class="form-control" value="{{$info[0]->cedula}}" required></div>
-                                </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group  row"><label class="col-sm-2 col-form-label">Apellido</label>
 
                                     <div class="col-sm-10"><input class="form-control" name="apellido" id="apellido" value="{{$info[0]->apellido}}" required></div>
 
+                                </div>
+                                <div class="hr-line-dashed"></div>
+
+                                <div class="form-group  row"><label class="col-sm-2 col-form-label">Cédula</label>
+                                <div class="col-sm-10"><input type="text" name="cedula" id="cedula" class="form-control" value="{{$info[0]->cedula}}" required></div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group  row"><label class="col-sm-2 col-form-label">Correo</label>
