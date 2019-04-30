@@ -14,6 +14,7 @@ class AdminSeeder extends Seeder
         DB::table('doctors')->insert([
             'nombre' => 'admin',
             'apellido' => 'admin',
+            'cedula' => '25458987',
             'correo' => 'admin@gmail.com',
             'password' => Hash::make(12345678),
             'admin' => true,

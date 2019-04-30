@@ -17,6 +17,7 @@ class CreateDoctorsTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->string('apellido');
+            $table->string('cedula');
             $table->string('correo'); 
             $table->string('password');
             $table->time('horario');

@@ -180,5 +180,12 @@ class PatientController extends Controller
         $admin = DB::table('doctors')->select('admin')->where('id',$id)->get();
 
         return $admin[0]->admin;
-    }  
+    }
+
+    public function getpatients(){
+        $patients = DB::table('patients')->get();
+
+        return $patients;
+    }
+
 }

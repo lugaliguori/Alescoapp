@@ -15,6 +15,10 @@
                                     <div class="col-sm-10"><input class="form-control" name="nombre" id="nombre" required></div>
 
                                 </div>
+                                <div class="form-group  row"><label class="col-sm-2 col-form-label">Cédula</label>
+
+                                    <div class="col-sm-10"><input type="text" name="cedula" id="cedula" class="form-control" required></div>
+                                </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group  row"><label class="col-sm-2 col-form-label">Apellido</label>
 
@@ -53,7 +57,7 @@
                                  <div class="hr-line-dashed"></div>
                                 <div class="form-group row"><label class="col-sm-2 col-form-label">Administrador</label>
                                     <div class="col-sm-10"><label>
-                                        <input type="radio" name="admin" id="admin" value="1"> Si </label>
+                                        <input type="radio" name="admin" id="admin" value="1"> Sí </label>
                                 </div>
                                 @endif
                                 </div> 

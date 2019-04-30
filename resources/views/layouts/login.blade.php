@@ -22,7 +22,7 @@
                 </div>
                 <button type="submit" class="btn btn-primary block full-width m-b">Inicio de Sesión</button>
 
-                <a href="/checkmail"><small>¿Olvido su contraseña?</small></a>
+                <a href="/checkmail"><small>¿Olvidó su contraseña?</small></a>
                 <p class="text-muted text-center"><small>¿No tienes cuenta? ¡Registrate!!</small></p>
                 <a class="btn btn-sm btn-white btn-block" href="/pacientes_add">Crea una Cuenta</a>
             </form>

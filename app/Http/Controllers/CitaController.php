@@ -195,7 +195,7 @@ class CitaController extends Controller
         $admin = self::checkAdmin($id);    
 
         $patients = DB::table('patients')->select('id','nombre')->get();
-        $doctor = DB::table('doctors')->join('especialidades','doctors.id_especialidad', '=','especialidades.id')->select('doctors.id','doctors.nombre','doctors.admin','especialidades.nombre as especialidad')->get();
+        $doctor = DB::table('doctors')->join('especialidades','doctors.id_especialidad', '=','especialidades.id')->select('doctors.id','doctors.nombre','doctors.admin','especialidades.nombre as especialidad')->where('doctors.id',$id)->get();
 
         return view('layouts.admin.citas-add', ['patients' => $patients, 'doctor' => $doctor[0], 'id' => $id,'administrador' =>$admin]);
     }

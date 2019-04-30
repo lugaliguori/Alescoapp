@@ -109,7 +109,7 @@ class DoctorController extends Controller
             $doctor->correo=$request->correo;
         }
         if ($request->filled('password')){
-            $doctor->password=$request->password;
+            $doctor->password=Hash::make($request->password);
         }
         if ($request->has('pacientes_dia')){
             $doctor->pacientes_dia=$request->pacientes_dia;

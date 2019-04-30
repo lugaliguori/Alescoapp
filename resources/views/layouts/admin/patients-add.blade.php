@@ -15,6 +15,10 @@
                                     <div class="col-sm-10"><input type="text" name="nombre" class="form-control" required></div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
+                                <div class="form-group  row"><label class="col-sm-2 col-form-label">Cédula</label>
+
+                                    <div class="col-sm-10"><input type="text" name="cedula" id="cedula" class="form-control" required></div>
+                                </div>
                                 <div class="form-group  row"><label class="col-sm-2 col-form-label">Fecha de nacimiento</label>
                                      <div class="col-sm-10"><input type="text" name="fecha_nac" id="fecha_nac"class="form-control" required></div>
                                 </div>

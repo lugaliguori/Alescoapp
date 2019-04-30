@@ -13,6 +13,7 @@ class PatientSeeder extends Seeder
     {
         DB::table('patients')->insert([
             'nombre' => 'test patient',
+            'cedula' => '23478521'
             'correo' => 'lugaliguori@gmail.com',
             'fecha_nac' => '1994-05-22',
             'sexo' => 'M',
