@@ -120,7 +120,7 @@ class CitaController extends Controller
 
         $cupos = count($cupos);
 
-        $doctor = DB::table('doctors')->join('especialidades','doctors.id_especialidad', '=','especialidades.id')->select('doctors.id','doctors.nombre','doctors.horario','doctors.pacientes_dia','especialidades.nombre as especialidad')->where('doctors.id',$request->id_doctor)->get();
+        $doctor = DB::table('doctors')->join('especialidades','doctors.id_especialidad', '=','especialidades.id')->select('doctors.id','doctors.nombre','doctors.horario','doctors.pacientes_dia','especialidades.nombre as especialidad')->where('doctors.id',$request->id_doctor)->orderBy('nombre', 'asc')->get();
 
         $disponibles = $doctor[0]->pacientes_dia - $cupos;
 
@@ -133,7 +133,7 @@ class CitaController extends Controller
         if ($exist){
             if ($request->has('admin')){
 
-                    $patients = DB::table('patients')->select('id','nombre')->get();
+                    $patients = DB::table('patients')->select('id','nombre')->orderBy('nombre', 'asc')->get();
 
                     return view('layouts.admin.citas-add',['cupos' => $disponibles,'info' => $request, 'id' => $request->id_doctor,'administrador' => $request->admin,'doctor' => $doctor[0],'paciente' => $paciente[0]->nombre,'patients' => $patients, 'puesto' => $numero]);
             }else{
@@ -145,7 +145,7 @@ class CitaController extends Controller
             $mensaje = 'No puede solicitar citas con un doctor dos veces en un día';
             if ($request->has('admin')){
 
-                    $patients = DB::table('patients')->select('id','nombre')->get();
+                    $patients = DB::table('patients')->select('id','nombre')->orderBy('nombre', 'asc')->get();
 
                     return view('layouts.admin.citas-add',['cupos' => $disponibles,'info' => $request, 'id' => $request->id_doctor,'administrador' => $request->admin,'doctor' => $doctor[0],'paciente' => $paciente[0]->nombre,'patients' => $patients,'mensaje' => $mensaje,'puesto' => $numero]);
             }else{
@@ -185,7 +185,7 @@ class CitaController extends Controller
     public function datoCita($id){
 
         $patient = DB::table('patients')->select('id','nombre')->where('id',$id)->get();
-        $doctors = DB::table('doctors')->join('especialidades','doctors.id_especialidad', '=','especialidades.id')->select('doctors.id','doctors.nombre','especialidades.nombre as especialidad')->get();
+        $doctors = DB::table('doctors')->join('especialidades','doctors.id_especialidad', '=','especialidades.id')->select('doctors.id','doctors.nombre','especialidades.nombre as especialidad')->orderBy('nombre', 'asc')->get();
 
         return view('layouts.users.citas-add', ['patient' => $patient, 'doctors' => $doctors, 'id' => $id]);
     }
@@ -194,7 +194,7 @@ class CitaController extends Controller
 
         $admin = self::checkAdmin($id);    
 
-        $patients = DB::table('patients')->select('id','nombre')->get();
+        $patients = DB::table('patients')->select('id','nombre')->orderBy('nombre', 'asc')->get();
         $doctor = DB::table('doctors')->join('especialidades','doctors.id_especialidad', '=','especialidades.id')->select('doctors.id','doctors.nombre','doctors.admin','especialidades.nombre as especialidad')->where('doctors.id',$id)->get();
 
         return view('layouts.admin.citas-add', ['patients' => $patients, 'doctor' => $doctor[0], 'id' => $id,'administrador' =>$admin]);
