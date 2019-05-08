@@ -21,14 +21,18 @@
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group row"><label class="col-sm-3 col-form-label">Doctor</label>
-
-                                    <div class="col-sm-9"><select class="form-control" name="id_doctor" id="id_doctor" required></div>
-                                        @foreach ($doctors as $doctor)
-                                        <linea>
-                                          <option value="{{$doctor->id}}">{{$doctor->nombre}}, {{$doctor->especialidad}}</option>
-                                        </linea>
-                                        @endforeach
-                                        </select>  
+                                      <div class="col-sm-9">
+                                        <div class="input-group">
+                                          <select class="form-control" name="id_doctor" id="id_doctor" required>
+                                              @foreach ($doctors as $doctor)
+                                                <option value="{{$doctor->id}}">{{$doctor->nombre}}, {{$doctor->especialidad}}</option>
+                                              @endforeach
+                                          </select>
+                                          <div class="input-group-append">
+                                            <button class="btn btn-outline-secondary" type="button" onClick="toggleSearch()"><i class="fa fa-search"></i></button>
+                                          </div>
+                                        </div>
+                                      <input type="text" class="form-control" id="search" style = "margin-top: 5px; display: none" >        
                                  </div>
                                 </div> 
                                 <div class="hr-line-dashed"></div>
@@ -105,6 +109,7 @@
                   </div>
                 </div>
                 @endif
+                <!--date picker jquery -->
                 <script>
                   $( function() {
                     $( "#fecha" ).datepicker({ minDate: new Date(), changeMonth: true,changeYear: true});
@@ -115,6 +120,52 @@
                       document.getElementById("form").submit();
                      }    
                     </script>
+              <!--toogle the search field -->
+              <script>
+                function toggleSearch() {
+                  var x = document.getElementById("search");
+                  if (x.style.display === "none") {
+                    x.style.display = "block";
+                  } else {
+                    x.style.display = "none";
+                  }
+                }
+              </script>
+              <!--filters select list -->
+              <script>   
+                  jQuery.fn.filterByText = function(textbox, selectSingleMatch) {
+                      return this.each(function() {
+                          var select = this;
+                          var options = [];
+                          $(select).find('option').each(function() {
+                              options.push({value: $(this).val(), text: $(this).text()});
+                          });
+                          $(select).data('options', options);
+                          $(textbox).bind('change keyup', function() {
+                              var options = $(select).empty().data('options');
+                              var search = $(this).val().trim();
+                              var regex = new RegExp(search,"gi");
+                            
+                              $.each(options, function(i) {
+                                  var option = options[i];
+                                  if(option.text.match(regex) !== null) {
+                                      $(select).append(
+                                         $('<option>').text(option.text).val(option.value)
+                                      );
+                                  }
+                              });
+                              if (selectSingleMatch === true && $(select).children().length === 1) {
+                                  $(select).children().get(0).selected = true;
+                              }
+                          });            
+                      });
+                  };
+
+                  $(function() {
+                      $('#id_doctor').filterByText($('#search'), true);
+                    });  
+              </script>  
+
 
   </div>
 @stop
