@@ -7,7 +7,7 @@
             <div>
 
                 <div class="row" style="justify-content: center" >
-                     <img src="{{ asset('images/alescologo.jpg') }}" style="margin-bottom: 10px">
+                     <img src="{{  secure_asset('images/alescologo.jpg') }}" style="margin-bottom: 10px">
                  </div>
 
             </div>
